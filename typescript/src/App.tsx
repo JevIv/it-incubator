@@ -27,4 +27,16 @@ function PageTitle(props: PageTitlePropsType) {
     return <h1>{ props.title }</h1>
 }
 
+type MessageType = {
+    message: string
+}
+
+function HelloMessage(props: MessageType) {
+    return <h2>{props.message}</h2>
+}
+
+const ByeMessage: React.FC<MessageType> = (props) => {
+    return <h2>{props.message}</h2>
+}
+
 export default App;

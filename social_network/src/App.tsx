@@ -1,22 +1,15 @@
 import React from 'react';
 import './App.css';
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
 
 const App = () => {
     return (
         <div className="app-wrapper">
-            <header className="header">
-                <img
-                    src="https://user-images.githubusercontent.com/6764957/52892445-9045cf80-3136-11e9-9d5e-a1c47e505372.png"
-                    alt=""/>
-            </header>
-            <nav className="nav">
-                <div>
-                    Profile
-                </div>
-            </nav>
-            <div className="content">
-                Main content
-            </div>
+            <Header/>
+            <Navbar/>
+            <Profile/>
         </div>
     );
 }

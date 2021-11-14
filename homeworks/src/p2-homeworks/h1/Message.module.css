@@ -1,3 +1,74 @@
-.message {
-
+p, time {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
 }
+
+.messageBlock {
+    height: 60px;
+    width: 250px;
+    position: relative;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.message::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background-color: transparent;
+    bottom: -15px;
+    left: -35px;
+    height: 50px;
+    width: 20px;
+    border-top-right-radius: 25px;
+    transform: rotate(90deg);
+    box-shadow: 0 -20px 0 0 #0F270B;
+}
+
+.message {
+    height: 60px;
+    width: 210px;
+    position: absolute;
+    display: inline;
+    background-color: #0F270B;
+    border-radius: 10px 10px 10px 0px;
+}
+
+p {
+    font-family: Calibri, sans-serif;
+    padding-left: 15px;
+}
+
+.senderName {
+    font-weight: bold;
+    color: #8176A2;
+    padding-top: 15px;
+}
+
+.message .text {
+    color: #B5C3AD;
+}
+
+.message time {
+    color: #314A2C;
+    margin-top: -17px;
+    padding-right: 15px;
+    float: right;
+}
+
+img {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-left: 10px;
+    position: relative;
+    bottom: -8%;
+}
+

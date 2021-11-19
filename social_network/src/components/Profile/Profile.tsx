@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
     return (
-        <div className={s.content}>
+        <div>
             <div className={s.imageContaner}>
                 <img
                     src="https://wallpapercave.com/wp/wp2581749.jpg"

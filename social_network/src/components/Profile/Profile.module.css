@@ -3,6 +3,19 @@
     background-color: beige;
 }
 
-.item {
-    color: green;
+.imageContaner{
+    width: auto;
+    height: 400px;
+    overflow: hidden;
+}
+
+.content img {
+    max-height: 1200px;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    right: 0;
+    top: 0;
+    -o-object-fit: contain;
+    object-fit: contain;
 }

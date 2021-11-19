@@ -1,31 +1,19 @@
 import React from "react";
 import s from "./Profile.module.css";
+import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
     return (
         <div className={s.content}>
-            <div>
+            <div className={s.imageContaner}>
                 <img
-                    src="https://www.bracknell-forest.gov.uk/sites/default/files/the-look-out-swinley-forest-header-image.jpg"
+                    src="https://wallpapercave.com/wp/wp2581749.jpg"
                     alt=""/>
             </div>
             <div>
                 avatar + description
             </div>
-            <div>
-                My posts
-                <div>
-                    New post
-                </div>
-                <div className={s.posts}>
-                    <div className={s.item}>
-                        post 1
-                    </div>
-                    <div className={s.item}>
-                        post 2
-                    </div>
-                </div>
-            </div>
+            <MyPosts/>
 
             Main content
         </div>

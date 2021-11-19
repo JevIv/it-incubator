@@ -1,0 +1,10 @@
+.item {
+    color: green;
+    grid-area: c;
+}
+
+.item .avatar {
+    width: 90px;
+    border-radius: 500%;
+;
+}

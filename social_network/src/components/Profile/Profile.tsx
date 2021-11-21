@@ -1,18 +1,12 @@
 import React from "react";
 import s from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./Profileinfo/ProfileInfo";
 
 const Profile = () => {
     return (
         <div>
-            <div className={s.imageContaner}>
-                <img
-                    src="https://wallpapercave.com/wp/wp2581749.jpg"
-                    alt=""/>
-            </div>
-            <div>
-                avatar + description
-            </div>
+            <ProfileInfo/>
             <MyPosts/>
 
             Main content

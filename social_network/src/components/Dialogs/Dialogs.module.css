@@ -1,17 +1,23 @@
-
-.imageContaner{
-    width: auto;
-    height: 400px;
-    overflow: hidden;
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
 }
 
-.content img {
-    max-height: 1200px;
-    bottom: 0;
-    left: 0;
-    overflow: auto;
-    right: 0;
-    top: 0;
-    -o-object-fit: contain;
-    object-fit: contain;
+.dialogsItems {
+    padding: 10px;
+}
+.dialogsItems .active{
+    color: gold;
+}
+
+.dialogsItems .dialog {
+
+}
+
+.messages {
+    padding: 10px;
+}
+
+.messages .message {
+
 }

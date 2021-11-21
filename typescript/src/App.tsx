@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import state from "./redux/state";
 
 function App() {
@@ -11,21 +11,21 @@ function App() {
     let message2 = state.profilePage.posts[1].message
 
     return (
-        <BrowserRouter>
-            <div className="App">
-                <PageTitle title={"This is APP component"}/>
-                <div>This is APP component</div>
-                <input/>
-                Artcile 1
-                <Rating value={3}/>
-                Artcile 2
-                <Rating value={6}/>
-                <Accordion title={"This is Accordion title"} collapsed={false}/>
-                <Accordion title={"This is Accordion title 2"} collapsed={true}/>
-                <Route path={"/hello"} render={ () => <HelloMessage message={message}/>}/>
-                <Route path={"/bye"} render={ () => <ByeMessage message={message2}/>}/>
-            </div>
-        </BrowserRouter>
+        <div className="App">
+            <PageTitle title={"This is APP component"}/>
+            <div>This is APP component</div>
+            <input/>
+            Artcile 1
+            <Rating value={3}/>
+            Artcile 2
+            <Rating value={6}/>
+            <Accordion title={"This is Accordion title"} collapsed={false}/>
+            <Accordion title={"This is Accordion title 2"} collapsed={true}/>
+            <Routes>
+                <Route path={"/hello"} element={<HelloMessage message={message}/>}/>
+                <Route path={"/bye"} element={<ByeMessage message={message2}/>}/>
+            </Routes>
+        </div>
     );
 }
 

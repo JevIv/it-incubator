@@ -4,13 +4,29 @@ import {filterType, TaskType} from "./App";
 
 type PropsType = { //object
     title: string
-    tasks: Array<TaskType>
+    //tasks: Array<TaskType>
     removeTask: (mId: string) => void //funkcija ni4ego ne vozvra6aet- bez return eto void
-    setFilter: (value: filterType) => void
+    //setFilter: (value: filterType) => void
     addTask: (title: string) => void
+    tasksArray: Array<TaskType>
 }
 
 function ToDoList(props: PropsType) { // prinemaet object
+    console.log(props.tasksArray)
+    console.log("second")
+
+    const [filter, setMyFilter] = useState<filterType>("All")
+
+    const setFilter = (value: filterType) => {
+        setMyFilter(value)
+        console.log(filter)
+    }
+
+    let newTask = props.tasksArray;
+    newTask = filter === "All" ? props.tasksArray : //if all return all tasks
+        filter === "Active" ? props.tasksArray.filter((f => !f.isDone)) : //if active return undone
+            filter === "Completed" ? props.tasksArray.filter((f => f.isDone)) : //if completed return isDona
+                props.tasksArray
 
     const [title, setTitle] = useState("") //input vsegda string
 
@@ -30,7 +46,8 @@ function ToDoList(props: PropsType) { // prinemaet object
     }
 
     const changeFilterAllHandler = (value: filterType) => {
-        props.setFilter(value)
+        //props.setFilter(value)
+        setFilter(value)
     }
 
     const removeTaskHandler = (mID: string) => {
@@ -48,7 +65,8 @@ function ToDoList(props: PropsType) { // prinemaet object
                 <button onClick={addTaskHandler}>+</button>
             </div>
             <ul>
-                {props.tasks.map(m => {
+                {/*{props.tasks.map(m => {*/}
+                {newTask.map(m => {
                     return (                    // <=== skobki eto vizov
                         <li key={m.id}>
                             <button onClick={()=>removeTaskHandler(m.id)}>X</button>

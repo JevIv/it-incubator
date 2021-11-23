@@ -49,7 +49,7 @@ function App() {
         setTasks1([newTask, ...tasks1]);
     }
 
-    const [filter, setMyFilter] = useState<filterType>("All")
+    /*const [filter, setMyFilter] = useState<filterType>("All")
 
     const setFilter = (value: filterType) => {
         setMyFilter(value)
@@ -60,7 +60,7 @@ function App() {
     newTask = filter === "All" ? tasks1 : //if all return all tasks
         filter === "Active" ? tasks1.filter((f => !f.isDone)) : //if active return undone
         filter === "Completed" ? tasks1.filter((f => f.isDone)) : //if completed return isDona
-        tasks1
+        tasks1*/
     //let newTask = tasks1.filter(f => f.isDone)
     /*if(filter === "Active") {
         newTask = tasks1.filter(f => !f.isDone)
@@ -79,10 +79,11 @@ function App() {
     return (
         <div className="App">
             <ToDoList title={todoListTitle_1}
-                      tasks={newTask}
+                      //tasks={newTask}
                       removeTask={removeTask}
-                      setFilter={setFilter}
+                      //setFilter={setFilter}
                       addTask={addTask}
+                      tasksArray={tasks1}
             />
             {/*<ToDoList title={todoListTitle_2}
             tasks={tasks_2}/>*/}

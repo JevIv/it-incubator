@@ -2,10 +2,16 @@ import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
+type PostType = {
+    id: number
+    post: string
+    likesCount: number
+}
+
 
 const MyPosts = () => {
 
-    let postData = [
+    let postData: Array<PostType>= [
         {id:1, post:"My first post", likesCount: 12},
         {id:2, post:"My second post", likesCount: 10},
         {id:3, post:"My third post", likesCount: 1},

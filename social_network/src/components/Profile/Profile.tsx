@@ -2,12 +2,20 @@ import React from "react";
 import s from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
+import {PostType} from "../../index";
 
-const Profile = () => {
+type PropsType = {
+    postData: Array<PostType>
+}
+
+const Profile = (props: PropsType) => {
+
+
+
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts postData={props.state.posts}/>
 
             Main content
         </div>

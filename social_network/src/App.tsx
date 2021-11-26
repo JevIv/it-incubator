@@ -6,8 +6,18 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import s from "./components/Dialogs/Dialogs.module.css";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {DialogType, MessageType, PostType} from "./index";
 
-const App = () => {
+
+export type PropsType = {
+    postData: Array<PostType>
+    dialogData: Array<DialogType>
+    messageData: Array<MessageType>
+}
+
+const App = (props: PropsType) => {
+
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -15,11 +25,11 @@ const App = () => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/profile/" element={<Profile/>}/>
-                        <Route path="/dialogs/" element={<Dialogs/>}/>
-                        <Route path="/news/" element={<Dialogs/>}/>
-                        <Route path="/music/" element={<Dialogs/>}/>
-                        <Route path="/settings/" element={<Dialogs/>}/>
+                        <Route path="/profile/" element={<Profile state={props.state.profilePage}/>}/>
+                        <Route path="/dialogs/" element={<Dialogs state={props.state.dialogsPage}}/>}/>
+                        {/*<Route path="/news/" element={<Dialogs postData={props.postData}/>}/>
+                        <Route path="/music/" element={<Dialogs postData={props.postData}/>}/>
+                        <Route path="/settings/" element={<Dialogs postData={props.postData}/>}/>*/}
                     </Routes>
                 </div>
             </div>

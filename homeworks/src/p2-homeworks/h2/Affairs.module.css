@@ -1,3 +1,21 @@
 .someClass {
 
 }
+.AffairsBlock {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.ButtonsBlock {
+    flex-direction: row;
+}
+
+.Affair{
+    flex-direction: row;
+    margin: 5px 10px;
+}
+
+.ButtonDelete{
+    margin-left: 10px;
+}

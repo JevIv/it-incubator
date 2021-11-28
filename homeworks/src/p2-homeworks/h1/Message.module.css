@@ -38,6 +38,7 @@ p, time {
     display: inline;
     background-color: #0F270B;
     border-radius: 10px 10px 10px 0px;
+    word-wrap: break-word;
 }
 
 p {

@@ -12,6 +12,7 @@ type PostType = {
     message: string
     likesCount: number
 }
+
 type ProfilePageType = {
     posts: Array<PostType>
 }

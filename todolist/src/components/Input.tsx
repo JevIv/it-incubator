@@ -1,15 +1,19 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 
 type propsType={
-    name:string
-    callback:()=>void
+    value:string
+    onChange:()=>void
+    onKeyPress:()=>void
 }
 
-export const Button = (props:propsType) => {
-    const onClickHandler = () =>{
-        props.callback()
+export const Input = (props:propsType) => {
+    const onChangeHandler = () =>{
+        props.onChange()
+    }
+    const onKeyPressHandler = () =>{
+        props.onKeyPress()
     }
     return (
-        <button onClick={onClickHandler}>{props.name}</button>
+        <button onChange={onChangeHandler} onKeyPress={onKeyPressHandler}>{props.value}</button>
     )
 }

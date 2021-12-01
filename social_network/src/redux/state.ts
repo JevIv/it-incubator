@@ -1,4 +1,3 @@
-import {DialogType, MessageType, PostType} from "../index";
 
 
 export type PostType = {
@@ -15,7 +14,23 @@ export type MessageType = {
     message: string
 }
 
-let state = {
+export type ProfilePageType = {
+    posts: Array<PostType>
+}
+export type DialogsPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
+export type SidebarType = {}
+
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sidebar: SidebarType
+}
+
+
+let state: RootStateType = {
     profilePage: {
         posts: [
             {id: 1, post: "My first post", likesCount: 12},
@@ -26,7 +41,7 @@ let state = {
             {id: 6, post: "My sixth post", likesCount: 5},
         ]
     },
-    messagesPage: {
+    dialogsPage: {
         messages: [
             {id: 1, message: "HI"},
             {id: 2, message: "How is your it-incubator!"},
@@ -45,5 +60,6 @@ let state = {
         ],
     },
     sidebar: {}
-
 }
+
+export default state

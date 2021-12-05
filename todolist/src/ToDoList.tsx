@@ -95,9 +95,9 @@ function ToDoList(props: PropsType) { // prinemaet object
                 <button className={filter==="All" ? s.activeFilter : ""} onClick={()=>changeFilterAllHandler("All")}>All</button>
                 <button className={filter==="Active" ? s.activeFilter : ""} onClick={()=>changeFilterAllHandler("Active")}>Active</button>
                 <button className={filter==="Completed" ? s.activeFilter : ""} onClick={()=>changeFilterAllHandler("Completed")}>Completed</button>
-{/*<Button name={"All"} callback={() => changeFilterAllHandler("All")}/>
-                <Button name={"Active"} callback={() => changeFilterAllHandler("Active")}/>
-                <Button name={"Completed"} callback={() => changeFilterAllHandler("Completed")}/>*/}
+{/*<Buttons name={"All"} callback={() => changeFilterAllHandler("All")}/>
+                <Buttons name={"Active"} callback={() => changeFilterAllHandler("Active")}/>
+                <Buttons name={"Completed"} callback={() => changeFilterAllHandler("Completed")}/>*/}
             </div>
         </div>
     )

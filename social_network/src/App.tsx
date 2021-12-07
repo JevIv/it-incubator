@@ -7,8 +7,12 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {RootStateType} from "./redux/state";
 
+type AppPropsType= {
+    state: RootStateType,
+    addPost: (postMessage: string) => void
+}
 
-const App = (props: RootStateType) => {
+const App = (props: AppPropsType) => {
 
     return (
         <BrowserRouter>
@@ -17,8 +21,8 @@ const App = (props: RootStateType) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/profile/" element={<Profile state={props.profilePage}/>}/>
-                        <Route path="/dialogs/" element={<Dialogs state={props.dialogsPage}/>}/>
+                        <Route path="/profile/" element={<Profile state={props.state.profilePage}/>}/>
+                        <Route path="/dialogs/" element={<Dialogs state={props.state.dialogsPage}/>}/>
                         {/*<Route path="/news/" element={<Dialogs postData={props.postData}/>}/>
                         <Route path="/music/" element={<Dialogs postData={props.postData}/>}/>
                         <Route path="/settings/" element={<Dialogs postData={props.postData}/>}/>*/}

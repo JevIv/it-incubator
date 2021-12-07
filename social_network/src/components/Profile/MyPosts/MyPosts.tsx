@@ -8,11 +8,23 @@ const MyPosts = (props: ProfilePageType) => {
 
     let postsElements = props.posts.map(p => <Post id={p.id} post={p.post} likesCount={p.likesCount}/>)
 
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let addPost = () => {
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            alert(text);
+        }
+
+    }
+
     return (
         <div>
-            My posts
+            <h3>My posts</h3>
             <div>
-                <button>Add post</button>
+                <textarea ref={newPostElement}></textarea>
+            </div>
+            <div>
+                <button onClick={addPost}>Add post</button>
                 <button>Remove post</button>
             </div>
             <div className={s.posts}>

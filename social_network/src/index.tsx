@@ -3,19 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state, {RootStateType} from "./redux/state";
+import state, {addPost, RootStateType} from "./redux/state";
 
-type StateType = {
-    state: Array<RootStateType>
+type AppPropsType = {
+    addPost: (postMessage: string) => void
+    state: RootStateType
 }
 
 
-const render = (props:StateType) => ReactDOM.render(
-    <App state={props.state}/>,
+const render = (props: AppPropsType) => ReactDOM.render(
+    <App state={props.state} addPost={props.addPost}/>,
     document.getElementById('root')
 );
 
-render(state);
+render();
 
 
 // If you want to start measuring performance in your app, pass a function

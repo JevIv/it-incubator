@@ -62,4 +62,14 @@ let state: RootStateType = {
     sidebar: {}
 }
 
+export let addPost = (postMessage: string) => {
+    let newPost = {
+        id: 5,
+        post: postMessage,
+        likesCount: 0
+    };
+
+    state.profilePage.posts.push(newPost);
+}
+
 export default state

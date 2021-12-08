@@ -9,7 +9,7 @@ export type TaskType = {
 }
 
 type PropsType = {
-    id: string
+    todoLisId: string
     title: string
     tasks: Array<TaskType>
     removeTask: (id: string, todolistId: string) => void
@@ -17,6 +17,7 @@ type PropsType = {
     addTask: (title: string, todolistId: string) => void
     changeStatus: (taskId: string, value: boolean, todolistId: string) => void
     filter: FilterValuesType
+    removeTodoList: (todolistId: string)=> void
 }
 
 export function Todolist(props: PropsType) {
@@ -28,31 +29,37 @@ export function Todolist(props: PropsType) {
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
         if (e.ctrlKey && e.charCode === 13) { //Enter
-            props.addTask(newTaskTitle, props.id);
+            props.addTask(newTaskTitle, props.todoLisId);
             setNewTaskTitle("");
         }
     }
     const addTaskHandler = () => {
         if (newTaskTitle.trim() !== "") {
-            props.addTask(newTaskTitle.trim(), props.id);
+            props.addTask(newTaskTitle.trim(), props.todoLisId);
             setNewTaskTitle("");
         } else {
             setError("Field is required")
         }
     }
-    const onAllClickHandler = (value: FilterValuesType, id: string) => {
-        props.changeFilter(value, id)
+    const onAllClickHandler = (value: FilterValuesType, todoLisId: string) => {
+        props.changeFilter(value, todoLisId)
     }
-    const onRemoveHandler = (id: string) => {
-        props.removeTask(id)
+    const onRemoveHandler = (id: string, todoLisId:string) => {
+        props.removeTask(id, todoLisId)
     }
-    const checkBoxHandler = (id: string, e: ChangeEvent<HTMLInputElement>) => {
-        props.changeStatus(id, e.currentTarget.checked);
+    const checkBoxHandler = (id: string, e: ChangeEvent<HTMLInputElement>, todoLisId: string) => {
+        props.changeStatus(id, e.currentTarget.checked, todoLisId);
+    }
+    const removeTodoList = () => {
+        props.removeTodoList(props.todoLisId);
     }
 
     return (
         <div>
-            <h3>{props.title}</h3>
+            <h3>
+                {props.title}
+                <button onClick={removeTodoList}>X</button>
+            </h3>
             <div>
                 <input className={error ? s.error : ""}
                        value={newTaskTitle}
@@ -67,10 +74,10 @@ export function Todolist(props: PropsType) {
                         <li key={t.id} className={t.isDone ? s.isDone : ""}>
                             <input type="checkbox"
                                    checked={t.isDone}
-                                   onChange={(e) => checkBoxHandler(t.id, e)}/>
+                                   onChange={(e) => checkBoxHandler(t.id, e, props.todoLisId)}/>
                             <span>{t.title}</span>
                             <button onClick={() =>
-                                onRemoveHandler(t.id)}>X
+                                onRemoveHandler(t.id, props.todoLisId)}>X
                             </button>
                         </li>)
                 }
@@ -78,17 +85,17 @@ export function Todolist(props: PropsType) {
             <div>
                 <button className={props.filter === "all" ? s.activeFilter : ""}
                         onClick={() => {
-                            onAllClickHandler("all", props.id)
+                            onAllClickHandler("all", props.todoLisId)
                         }}>All
                 </button>
                 <button className={props.filter === "active" ? s.activeFilter : ""}
                         onClick={() => {
-                            onAllClickHandler("active", props.id)
+                            onAllClickHandler("active", props.todoLisId)
                         }}>Active
                 </button>
                 <button className={props.filter === "completed" ? s.activeFilter : ""}
                         onClick={() => {
-                            onAllClickHandler("completed", props.id)
+                            onAllClickHandler("completed", props.todoLisId)
                         }}>Completed
                 </button>
             </div>

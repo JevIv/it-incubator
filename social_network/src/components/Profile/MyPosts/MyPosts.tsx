@@ -12,7 +12,7 @@ const MyPosts = (props: ProfilePageType) => {
     let addPost = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
-            alert(text);
+            props.addPost(text);
         }
 
     }

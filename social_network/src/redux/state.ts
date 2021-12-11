@@ -1,3 +1,4 @@
+import {render} from "../render";
 
 
 export type PostType = {
@@ -39,7 +40,8 @@ let state: RootStateType = {
             {id: 4, post: "My fourth post", likesCount: 15},
             {id: 5, post: "My fifth post", likesCount: 0},
             {id: 6, post: "My sixth post", likesCount: 5},
-        ]
+        ],
+        newPosText: "it-kamasutra",
     },
     dialogsPage: {
         messages: [
@@ -62,7 +64,7 @@ let state: RootStateType = {
     sidebar: {}
 }
 
-export let addPost = (postMessage: string) => {
+export const addPost = (postMessage: string) => {
     let newPost = {
         id: 5,
         post: postMessage,
@@ -70,6 +72,18 @@ export let addPost = (postMessage: string) => {
     };
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = "";
+    render(state);
 }
 
-export default state
+export const updateNewPostText = (postMessage: string) => {
+    state.profilePage.newPostText = newText;
+    state.profilePage.newPostText = "";
+    render(state);
+}
+
+export const subscribe = (observer) => {
+    render = observer
+}
+
+export default state;

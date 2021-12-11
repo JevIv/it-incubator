@@ -17,6 +17,7 @@ export type MessageType = {
 
 export type ProfilePageType = {
     posts: Array<PostType>
+    newPostText: string
 }
 export type DialogsPageType = {
     dialogs: Array<DialogType>
@@ -41,7 +42,7 @@ let state: RootStateType = {
             {id: 5, post: "My fifth post", likesCount: 0},
             {id: 6, post: "My sixth post", likesCount: 5},
         ],
-        newPosText: "it-kamasutra",
+        newPostText: "it-kamasutra",
     },
     dialogsPage: {
         messages: [
@@ -65,7 +66,7 @@ let state: RootStateType = {
 }
 
 export const addPost = (postMessage: string) => {
-    let newPost = {
+    const newPost: PostType = {
         id: 5,
         post: postMessage,
         likesCount: 0
@@ -77,12 +78,12 @@ export const addPost = (postMessage: string) => {
 }
 
 export const updateNewPostText = (postMessage: string) => {
-    state.profilePage.newPostText = newText;
+    state.profilePage.newPostText = postMessage;
     state.profilePage.newPostText = "";
     render(state);
 }
 
-export const subscribe = (observer) => {
+export const subscribe = (observer: any) => {
     render = observer
 }
 

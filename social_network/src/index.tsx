@@ -1,10 +1,5 @@
 import reportWebVitals from './reportWebVitals';
-import state, {addPost, RootStateType, subscribe} from "./redux/state";
-
-type renderPropsType = {
-    addPost: (postMessage: string) => void
-    state: RootStateType
-}
+import state, {addPost, subscribe, updateNewPostText} from "./redux/state";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -16,16 +11,17 @@ import {RootStateType} from "./redux/state";
 type AppPropsType = {
     addPost: (postMessage: string) => void
     state: RootStateType
+    updateNewPostText: (postMessage: string) => void
 }
 
 
-const render = (props:AppPropsType) => ReactDOM.render(
-    <App state={props.state} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>,
+const render = () => ReactDOM.render(
+    <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>,
     document.getElementById('root')
 );
 
 
-render(state);
+render();
 
 subscribe(render);
 

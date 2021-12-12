@@ -12,6 +12,7 @@ const people: Array<ManType> = [
     {name: "Dmitry Sidorov", age: 18},
 ]
 
+/*
 const dimychTransformator = (man: ManType) => {
     return {
         stack: ["css, html", "js", "tdd", "react"],
@@ -19,6 +20,13 @@ const dimychTransformator = (man: ManType) => {
         lastName: man.name.split(" ")[1]
     }
 }
+*/
+
+const dimychTransformator = (man: ManType) => ({ //with () we construct object
+    stack: ["css, html", "js", "tdd", "react"], // const func = (props) => (object)
+    firstName: man.name.split(" ")[0],
+    lastName: man.name.split(" ")[1]
+})
 
 
 const devs = [
@@ -45,3 +53,16 @@ const devs2 = [
 ]
 console.log(devs2)
 
+const dev3 = people.map(dimychTransformator)
+console.log(dev3)
+
+// with map
+const dev4 = people.map(man => ({
+    stack: ["css, html", "js", "tdd", "react"],
+    firstName: man.name.split(" ")[0],
+    lastName: man.name.split(" ")[1]
+}))
+console.log(dev4)
+
+
+const messages = people.map( man => `Hello ${man.name.split(' ')[0]}. Wellcome to IT-incubator`)

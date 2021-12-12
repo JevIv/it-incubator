@@ -1,60 +1,73 @@
-import {mult, splitIntoWords, sum} from "./01";
+test("should receive old men older than 90 years", () => {
+    const ages = [18, 29, 23, 60, 100, 97, 34, 1, 4, 59, 50];
+
+    const predicate = (age: number) => age > 90;
 
 
-//data
-let a: number;
-let b: number;
-let c: number;
+    const oldAges = ages.filter(age => age > 90);
 
-beforeEach(() => {
-    a = 1;
-    b = 2;
-    c = 3;
+    expect(oldAges.length).toBe(2);
+    expect(oldAges[0]).toBe(100);
 })
 
 
-test('sum should be correct', () => {
+test("should receive cheapCourses, cheaper than 160", () => {
+    type CourseType = {
+        title: string
+        price: number
+    }
 
-    //action
-    const result1 = sum(a,b);
-    const result2 = sum(b,c);
+    const courses = [
+        {
+            title: "css",
+            price: 100
+        },
+        {
+            title: "JS",
+            price: 200
+        },
+        {
+            title: "ReactJS",
+            price: 150
+        },
+    ]
 
-    //expect result
-    expect(result1).toBe(3);
-    expect(result2).toBe(5);
+    const cheapPredicate = (courses: CourseType) => {
+        return courses.price < 160;
+    }
+
+    const cheapCourses = courses.filter(courses => courses.price < 160);
+
+
+    expect(cheapCourses.length).toBe(2);
+    expect(cheapCourses[0].title).toBe("css");
+    expect(cheapCourses[1].title).toBe("ReactJS");
 })
 
+test("get only completed tasks", () => {
+    const tasks = [
+        {id:1, title:"Bread", isDone:false},
+        {id:2, title:"Milk", isDone:true},
+        {id:3, title:"Sugar", isDone:false},
+        {id:4, title:"Beer", isDone:true},
+    ]
+    const completedTasks = tasks.filter(task => task.isDone)
 
-test('multiply should be correct', () => {
-
-    //action
-    const result1 = mult(a,b);
-    const result2 = mult(b,c);
-
-    //expect result
-    expect(result1).toBe(2);
-    expect(result2).toBe(6);
+    expect(completedTasks.length).toBe(2);
+    expect(completedTasks[0].id).toBe(2);
+    expect(completedTasks[1].id).toBe(4);
 })
 
-test('spliting into to words should be correct', () => {
-    //data
-    const sent1 ="Hello my friends!";
-    const sent2 ="JS - the best programming language";
+test("get only uncompleted tasks", () => {
+    const tasks = [
+        {id:1, title:"Bread", isDone:false},
+        {id:2, title:"Milk", isDone:true},
+        {id:3, title:"Sugar", isDone:false},
+        {id:4, title:"Beer", isDone:true},
+    ]
+    const uncompletedTasks = tasks.filter(task => !task.isDone)
 
-    //action
-    const result1 = splitIntoWords(sent1);
-    const result2 = splitIntoWords(sent2);
-
-    //expect result
-    expect(result1.length).toBe(3);
-    expect(result1[0]).toBe("hello");
-    expect(result1[1]).toBe("my");
-    expect(result1[2]).toBe("friends");
-
-    expect(result2.length).toBe(5);
-    expect(result2[0]).toBe("js");
-    expect(result2[1]).toBe("the");
-    expect(result2[2]).toBe("best");
-    expect(result2[3]).toBe("programming");
-    expect(result2[4]).toBe("language");
+    expect(uncompletedTasks.length).toBe(2);
+    expect(uncompletedTasks[0].id).toBe(1);
+    expect(uncompletedTasks[1].id).toBe(3);
 })

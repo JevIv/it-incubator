@@ -1,18 +1,46 @@
-const sentense = "Hello my friends!";
 
-export function sum(a: number, b: number) {
-    return a + b;
+
+const ages = [18, 29, 23, 60, 100, 97, 34, 1, 4, 59, 50];
+
+/*const predicate = (age: number) => {
+    return age > 90;
+}*/
+const predicate = (age: number) => age > 90;
+
+
+const oldAges = [100, 97] //>90
+
+
+type CourseType = {
+    title: string
+    price: number
 }
 
-export function mult(a: number, b: number) {
-    return a * b;
+const courses = [
+    {
+        title: "css",
+        price: 100
+    },
+    {
+        title: "JS",
+        price: 200
+    },
+    {
+        title: "ReactJS",
+        price: 150
+    },
+]
+
+const cheapPredicate = (courses: CourseType) => {
+    return courses.price < 160;
 }
 
-export function splitIntoWords(sentense: string) {
-    const words = sentense.toLowerCase().split(" ")
-
-    return words.filter(w => w !== "" && w !== "-")
-        .map(w => w
-            .replace(".", "")
-            .replace("!", ""))
-}
+const cheapCourses = [{
+    title: "css",
+    price: 100
+},
+    {
+        title: "ReactJS",
+        price: 150
+    },
+];

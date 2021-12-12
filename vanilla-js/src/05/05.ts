@@ -66,3 +66,7 @@ console.log(dev4)
 
 
 const messages = people.map( man => `Hello ${man.name.split(' ')[0]}. Wellcome to IT-incubator`)
+
+export const createGreetingMessage = (people: Array<ManType>) => {
+    return people.map( man => `Hello ${man.name.split(' ')[0]}. Wellcome to IT-incubator`)
+}

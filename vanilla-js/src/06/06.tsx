@@ -9,9 +9,9 @@ const callback = () => {
 
 export const User = () => {
 
-    const search = (event: MouseEvent<HTMLButtonElement>) => {
+/*    const search = (event: MouseEvent<HTMLButtonElement>) => {
         event.currentTarget.value;
-    }
+    }*/
 
     const deleteUser = (event: MouseEvent<HTMLButtonElement>) => {
         alert(event.currentTarget.name)
@@ -39,7 +39,7 @@ export const User = () => {
                       onChange={onNameChanged}
                       onBlur={lostFocusHandler}>Evgeny</textarea>
             <input onChange={onAgeChanged} type={"number"}/>
-            <button name={"delete"} onClick={search}>Search</button>
+{/*            <button name={"delete"} onClick={search}>Search</button>*/}
             <button name={"save"} onClick={deleteUser}>X</button>
             {/*<div onClick={deleteUser}>delete</div>*/}
             <div onClick={saveUser}>save</div>

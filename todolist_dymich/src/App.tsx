@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./Todolist";
 import {v1} from "uuid";
+import {AddItemForm} from "./AddItemForm";
 
 export type FilterValuesType = "all" | "completed" | "active";
 type TodolistType = {
@@ -13,11 +14,10 @@ type TodolistType = {
 function App() {
 
     function addTask(title: string, todolistId: string) {
-        let task = {id: v1(), title: title, isDone: false}
-        let tasks = tasksObj[todolistId];
-        let newTasks = [task, ...tasks];
-        tasksObj[todolistId] = newTasks;
-        setTasks({...tasksObj});
+        let newTask = {id: v1(), title: title, isDone: false}
+        let copyTasksObj = {...tasksObj};
+        copyTasksObj[todolistId] = [newTask, ...tasksObj[todolistId]];
+        setTasks(copyTasksObj);
     }
 
     function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
@@ -57,8 +57,8 @@ function App() {
     let toDoListId2 = v1();
 
     let [toDoLists, setToDolists] = useState<Array<TodolistType>>([
-    {id: toDoListId1, title: "What to learn", filter: "active"},
-    {id: toDoListId2, title: "What to buy", filter: "completed"},
+        {id: toDoListId1, title: "What to learn", filter: "all"},
+        {id: toDoListId2, title: "What to buy", filter: "all"},
     ]);
 
     let [tasksObj, setTasks] = useState({
@@ -78,6 +78,7 @@ function App() {
 
     return (
         <div className="App">
+            <AddItemForm addTask={()=>{}} todoListId={"dsdd"}/>
             {
                 toDoLists.map((tl) => {
                     let tasksForTodolist = tasksObj[tl.id];
@@ -89,7 +90,7 @@ function App() {
                     }
                     return (
                         <Todolist key={tl.id}
-                                  todoLisId={tl.id}
+                                  todoListId={tl.id}
                                   title={tl.title}
                                   tasks={tasksForTodolist}
                                   removeTask={removeTask}

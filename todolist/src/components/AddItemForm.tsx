@@ -20,7 +20,6 @@ const AddItemForm = (props: AddItemFormPropsType) => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value);
         setError(false);
-
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
@@ -33,9 +32,10 @@ const AddItemForm = (props: AddItemFormPropsType) => {
             <input className={error ? s.error : ""}
                    value={title}
                    onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}/>
+                   onKeyPress={onKeyPressHandler}
+                   placeholder={"Please type your text"}/>
             {/*<button onClick={addHandler}>+</button>*/}
-            <Button name={"+"} callback={addHandler}/>
+            <Button name={"Add"} callback={addHandler}/>
             {error && <div className={s.errorMessage}>Title is required</div>}
         </div>
     );

@@ -41,7 +41,7 @@ export function Todolist(props: PropsType) {
                 {props.title}
                 <button onClick={removeTodoList}>X</button>
             </h3>
-            <AddItemForm addItem={props.addTask}/>
+            <AddItemForm addItem={addTask}/>
             <ul>
                 {
                     props.tasks.map(t =>

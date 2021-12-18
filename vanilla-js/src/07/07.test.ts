@@ -1,6 +1,15 @@
 
-test("", () => {
-    let props = {
+/*type LessonType = {
+    title: string
+}*/
+
+
+
+import {ManType} from "./07";
+
+let props: ManType;
+beforeEach(() => {
+    props = {
         name: "Evgeny",
         age: 28,
         lessons: [{title: "1"}, {title: "2"}],
@@ -10,6 +19,10 @@ test("", () => {
             }
         }
     }
+})
+
+
+test("", () => {
 
 /*    const age = props.age;
     const lessons = props.lessons;*/
@@ -26,4 +39,19 @@ test("", () => {
     expect(age).toBe(28);
     expect(lessons.length).toBe(2);
     expect(title).toBe("Nazvanie ulici")
+})
+
+
+test("", () => {
+    const l1 = props.lessons[0];
+    const l2 = props.lessons[1];
+
+    const [ls1,ls2] =props.lessons
+
+    expect(l1).toBe("1");
+    expect(l2).toBe("2");
+
+    expect(ls1).toBe("1");
+    expect(ls2).toBe("2");
+
 })

@@ -18,8 +18,10 @@ type PropsType = {
     changeFilter: (value: FilterValuesType, todolistId: string) => void
     addTask: (title: string, todolistId: string) => void
     changeStatus: (taskId: string, value: boolean, todolistId: string) => void
+    changeTaskTitle: (newTitle: string, taskId: string, todolistId: string) => void
     filter: FilterValuesType
     removeTodoList: (todolistId: string)=> void
+    changeTodoListTitle: (todolistId: string, newTitle: string)=> void
 }
 
 export function Todolist(props: PropsType) {
@@ -32,14 +34,17 @@ export function Todolist(props: PropsType) {
         props.changeStatus(id, e.currentTarget.checked, todoLisId);}
     const removeTodoList = () => {
         props.removeTodoList(props.todoListId);}
-
+    const changeTodoListTitle = (newTitle: string) => {
+        props.changeTodoListTitle(props.todoListId, newTitle);}
     const addTask = (title: string) => {
-        props.addTask(title, props.todoListId)
-    }
+        props.addTask(title, props.todoListId)}
+    const onChangeTitleHandler = (newTitle: string, taskID: string) => {
+        props.changeTaskTitle( newTitle, taskID, props.todoListId);}
+
     return (
         <div>
             <h3>
-                {props.title}
+                <EditableSpan taskID={props.todoListId} title={props.title} onChange={changeTodoListTitle} />
                 <button onClick={removeTodoList}>X</button>
             </h3>
             <AddItemForm addItem={addTask}/>
@@ -50,8 +55,9 @@ export function Todolist(props: PropsType) {
                             <input type="checkbox"
                                    checked={t.isDone}
                                    onChange={(e) => checkBoxHandler(t.id, e, props.todoListId)}/>
-                            <span>{t.title}</span>
-                            <EditableSpan title={t.title} editMode={true} onChange={}/>
+                            <EditableSpan title={t.title}
+                                          onChange={onChangeTitleHandler}
+                                          taskID={t.id}/>
                             <button onClick={() =>
                                 onRemoveHandler(t.id, props.todoListId)}>X
                             </button>

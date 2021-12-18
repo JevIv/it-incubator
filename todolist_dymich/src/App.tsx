@@ -33,6 +33,20 @@ function App() {
         }
     }
 
+    function changeTaskTitle(newTitle: string, taskId: string, todolistId: string) {
+        //find correct array with todolistId
+        let tasks = tasksObj[todolistId];
+        //find correct string
+        let task = tasks.find(t => t.id === taskId)
+        //change task if we found it
+        if (task) {
+            task.title = newTitle;
+            //set in state object copy for React render
+            tasksObj[todolistId] = [...tasks]
+            setTasks({...tasksObj});
+        }
+    }
+
     function removeTask(id: string, todolistId: string) {
         let tasks = tasksObj[todolistId];
         let filteredTasks = tasks.filter(t => t.id !== id);
@@ -54,6 +68,14 @@ function App() {
         setToDolists(filteredTodoList);
         delete tasksObj[todolistId];
         setTasks({...tasksObj});
+    }
+
+    let changeTodoListTitle = (todolistId: string, newTitle:string) => {
+        const todolist = toDoLists.find(tl => tl.id === todolistId);
+        if (todolist) {
+            todolist.title = newTitle;
+            setToDolists([...toDoLists]);
+        }
     }
 
     let toDoListId1 = v1();
@@ -111,7 +133,9 @@ function App() {
                                   addTask={addTask}
                                   changeStatus={changeStatus}
                                   filter={tl.filter}
-                                  removeTodoList={removeTodoList}/>
+                                  removeTodoList={removeTodoList}
+                                  changeTaskTitle={changeTaskTitle}
+                                  changeTodoListTitle={changeTodoListTitle}/>
                     )
                 })
             }

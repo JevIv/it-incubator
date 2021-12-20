@@ -14,8 +14,8 @@ export type UserWithLaptopType = UserType & {
     laptop: LaptopType
 }
 
-export const increaseAge = (u: UserType) => {
-    u.age++
+export type UserWithBooksType = UserType & {
+    books: Array<string>
 }
 
 export const makeHairCut = (u: UserType, length: number) => {
@@ -24,6 +24,25 @@ export const makeHairCut = (u: UserType, length: number) => {
         hair: u.hair / length
     }
 
+    return copy
+}
+
+export const moveUserToAnotherHouse = (u: UserWithLaptopType, houseNumber: number) => {
+    const copy = {
+        ...u,
+        address: {
+            ...u.address,
+            house: houseNumber
+        }
+    }
+    return copy
+}
+
+export const addNewBooksToUser = (u: UserWithLaptopType & UserWithBooksType, newBooks: Array<string>) => {
+    const copy = {
+        ...u,
+        books: [...u.books, newBooks]
+    }
     return copy
 }
 

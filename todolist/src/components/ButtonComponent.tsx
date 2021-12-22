@@ -5,7 +5,7 @@ type propsType={
     callback:()=>void
 }
 
-export const Button = (props:propsType) => {
+export const ButtonComponent = (props:propsType) => {
     const onClickHandler = () =>{
         props.callback()
     }

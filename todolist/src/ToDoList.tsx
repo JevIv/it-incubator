@@ -1,9 +1,12 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {filterType, TaskType, TodoListType} from "./App";
-import {Button} from "./components/Button";
+import {ButtonComponent} from "./components/ButtonComponent";
 import s from "./ToDoList.module.css"
 import AddItemForm from "./components/AddItemForm";
 import EditableSpan from "./components/EditableSpan";
+import {Button, ButtonGroup, Checkbox, List, ListItem} from "@material-ui/core";
+import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
+import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 
 type PropsType = { //object
     key: string,
@@ -46,43 +49,56 @@ function ToDoList(props: PropsType) { // prinemaet object
             <h3>
                 {/*{props.title}*/}
                 <EditableSpan title={props.title}  changeTitle={changeTodoListTitle}/>
-                <button
-                    onClick={() => {props.removeTodoList(props.id)}}>X
-                </button>
+                <CancelPresentationRoundedIcon
+                    color={"primary"}
+                    fontSize={"inherit"}
+                    onClick={() => {props.removeTodoList(props.id)}}>
+                </CancelPresentationRoundedIcon>
             </h3>
             <AddItemForm addItem={addTask}/>
-            <ul>
+            <List>
                 {props.tasksArray.map(m => {
 
                     const changeTaskTitle = (newTitle: string) => {
                         props.changeTaskTitle(m.id, newTitle, props.id)
                     }
                     return (                    // <=== skobki eto vizov
-                        <li key={m.id}>
-                            {/*<button onClick={()=>removeTaskHandler(m.id)}>X</button>*/}
-                            <Button name={"X"} callback={() => removeTaskHandler(m.id, props.id)}/>
-                            <input type="checkbox"
+                        <ListItem key={m.id}>
+                            {/*<ButtonComponent name={"X"} callback={() => removeTaskHandler(m.id, props.id)}/>*/}
+                            <Checkbox color={"primary"}
                                    checked={m.isDone}
-                                   /*onChange={checkBoxHandler}/>*/
+                                /*onChange={checkBoxHandler}/>*/
                                    onChange={(event) => checkBoxHandler(m.id, event, props.id)}/>
                             {/*<span className={m.isDone ? s.isDone : ""}>{m.title}</span>*/}
                             <EditableSpan title={m.title}
-                                          //isDone={m.isDone}
+                                //isDone={m.isDone}
                                           changeTitle={changeTaskTitle}/>
-                        </li>
+                            <ClearOutlinedIcon
+                                color={"primary"}
+                                fontSize={"small"}
+                                onClick={() => removeTaskHandler(m.id, props.id)}>
+                            </ClearOutlinedIcon>
+                        </ListItem>
                     )
                 })}
-            </ul>
+            </List>
             <div>
-                <button className={props.filter==="All" ? s.activeFilter : ""}
-                        onClick={()=>changeFilterAllHandler("All", props.id)}>All</button>
-                <button className={props.filter==="Active" ? s.activeFilter : ""}
-                        onClick={()=>changeFilterAllHandler("Active", props.id)}>Active</button>
-                <button className={props.filter==="Completed" ? s.activeFilter : ""}
-                        onClick={()=>changeFilterAllHandler("Completed", props.id)}>Completed</button>
-                {/*<Buttons name={"All"} callback={() => changeFilterAllHandler("All")}/>
-                <Buttons name={"Active"} callback={() => changeFilterAllHandler("Active")}/>
-                <Buttons name={"Completed"} callback={() => changeFilterAllHandler("Completed")}/>*/}
+                <ButtonGroup fullWidth size="small" variant="text" aria-label="text primary button group">
+                    <Button variant={props.filter === "All" ? "contained" : "text"}
+                        //className={props.filter === "All" ? s.activeFilter : ""}
+                            onClick={() => changeFilterAllHandler("All", props.id)}>All
+                    </Button>
+                    <Button color={"primary"}
+                            variant={props.filter === "Active" ? "contained" : "text"}
+                        //className={props.filter === "Active" ? s.activeFilter : ""}
+                            onClick={() => changeFilterAllHandler("Active", props.id)}>Active
+                    </Button>
+                    <Button color={"secondary"}
+                            variant={props.filter === "Completed" ? "contained" : "text"}
+                        //className={props.filter === "Completed" ? s.activeFilter : ""}
+                            onClick={() => changeFilterAllHandler("Completed", props.id)}>Completed
+                    </Button>
+                </ButtonGroup>
             </div>
         </div>
     )

@@ -3,6 +3,7 @@ import './App.css';
 import ToDoList from "./ToDoList";
 import {v1} from "uuid";
 import AddItemForm from "./components/AddItemForm";
+import {Paper} from "@material-ui/core";
 
 export type TaskType = {
     id: string
@@ -106,6 +107,7 @@ function App() {
                 tl.filter === "Completed" ? tasks[tl.id].filter((f => f.isDone)) : //if completed return isDona
                     tasks[tl.id]
         return (
+            <Paper elevation={3}>
             <ToDoList key={tl.id}
                       id={tl.id}
                       title={tl.title}
@@ -120,6 +122,7 @@ function App() {
                       changeTaskTitle={changeTaskTitle}
                       changeTodoListTitle={changeTodoListTitle}
             />
+            </Paper>
         )
     })
     //UI: UI layer

@@ -1,6 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import s from "./Todolist.module.css";
-import {Button} from "@mui/material";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -35,7 +34,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
                    value={newTaskTitle}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}/>
-            <Button onClick={addTaskHandler} variant={"contained"} color={"primary"}>+</Button>
+            <button onClick={addTaskHandler}>+</button>
             {error && <div className={s.errorMessage}>{error}</div>}
         </div>
     )

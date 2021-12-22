@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import {Input} from "@material-ui/core";
 //import s from "../ToDoList.module.css"
 
 type EditableSpanPropsType = {
@@ -22,7 +23,8 @@ const EditableSpan = (props: EditableSpanPropsType) => {
     }
     return (
         editMode
-            ? <input value={title}
+            ? <Input value={title}
+                     multiline
                      autoFocus={true}
                      onBlur={OffEditMode}
                      onChange={onChangeHandler}/>

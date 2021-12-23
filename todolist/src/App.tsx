@@ -3,7 +3,23 @@ import './App.css';
 import ToDoList from "./ToDoList";
 import {v1} from "uuid";
 import AddItemForm from "./components/AddItemForm";
-import {Paper} from "@material-ui/core";
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {Menu} from "@material-ui/icons";
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+        },
+        menuButton: {
+            marginRight: theme.spacing(2),
+        },
+        title: {
+            flexGrow: 1,
+        },
+    }),
+);
 
 export type TaskType = {
     id: string
@@ -26,6 +42,7 @@ export type TaskStateType = {
 function App() {
     //BLL: business layer
     //const todoListTitle_2: string = "2 To do list"
+    const classes = useStyles();
     const todoListID_1 = v1();
     const todoListID_2 = v1();
     const [todoLists, setTodoLists] = useState<Array<TodoListType>>([
@@ -128,8 +145,30 @@ function App() {
     //UI: UI layer
     return (
         <div className="App">
-            <AddItemForm addItem={addTodoList}/>
-            {todoListComponents}
+            <div className={classes.root}>
+                <AppBar position={"fixed"}>
+                    <Toolbar>
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <Menu />
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                            News
+                        </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+            </div>
+                <Container>
+                    <Grid container
+                          direction="row"
+                          justifyContent="flex-start"
+                          alignItems="center">
+                        <AddItemForm addItem={addTodoList}/>
+                    </Grid>
+                    <Grid container>
+                        {todoListComponents}
+                    </Grid>
+                </Container>
         </div>
     );
 }

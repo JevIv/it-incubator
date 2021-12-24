@@ -118,13 +118,12 @@ function App() {
     }
 
     const todoListComponents = todoLists.map(tl => {
-
         let newTask = tl.filter === "All" ? tasks[tl.id] : //if all return all tasks
             tl.filter === "Active" ? tasks[tl.id].filter((f => !f.isDone)) : //if active return undone
                 tl.filter === "Completed" ? tasks[tl.id].filter((f => f.isDone)) : //if completed return isDona
                     tasks[tl.id]
         return (
-            <Paper elevation={3}>
+            <Paper elevation={3} style={{ padding: "10px", margin: "10px"}} >
             <ToDoList key={tl.id}
                       id={tl.id}
                       title={tl.title}
@@ -146,7 +145,7 @@ function App() {
     return (
         <div className="App">
             <div className={classes.root}>
-                <AppBar position={"fixed"}>
+                <AppBar position={"static"}>
                     <Toolbar>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                             <Menu />
@@ -158,14 +157,17 @@ function App() {
                     </Toolbar>
                 </AppBar>
             </div>
-                <Container>
-                    <Grid container
-                          direction="row"
-                          justifyContent="flex-start"
-                          alignItems="center">
+                <Container fixed>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="flex-start"
+                        alignItems="center"
+                        style={{ padding: "10px" }}
+                        >
                         <AddItemForm addItem={addTodoList}/>
                     </Grid>
-                    <Grid container>
+                    <Grid container spacing={3}>
                         {todoListComponents}
                     </Grid>
                 </Container>

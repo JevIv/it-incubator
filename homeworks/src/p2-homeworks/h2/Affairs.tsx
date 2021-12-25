@@ -2,7 +2,6 @@ import React from 'react'
 import Affair from './Affair'
 import {AffairType, FilterType} from './HW2'
 import s from "./Affairs.module.css";
-import {filterType} from "../../../../todolist/src/App";
 
 type AffairsPropsType = { // need to fix any
     data: Array<AffairType>

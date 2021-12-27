@@ -5,16 +5,39 @@ import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
 
 export type FilterValuesType = "all" | "completed" | "active";
-type TodolistType = {
+export type TodolistType = {
     id: string,
     title: string,
     filter: FilterValuesType
 }
-type TasksStateType = {
+export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
 function App() {
+
+    let toDoListId1 = v1();
+    let toDoListId2 = v1();
+
+    let [toDoLists, setToDolists] = useState<Array<TodolistType>>([
+        {id: toDoListId1, title: "What to learn", filter: "all"},
+        {id: toDoListId2, title: "What to buy", filter: "all"},
+    ]);
+
+    let [tasksObj, setTasks] = useState<TasksStateType>({
+        [toDoListId1]: [
+            {id: v1(), title: "CSS", isDone: true},
+            {id: v1(), title: "JS", isDone: true},
+            {id: v1(), title: "React", isDone: false},
+            {id: v1(), title: "Html", isDone: true},
+        ],
+        [toDoListId2]: [
+            {id: v1(), title: "Book", isDone: true},
+            {id: v1(), title: "Milk", isDone: true},
+            {id: v1(), title: "Beer", isDone: false},
+            {id: v1(), title: "Bread", isDone: true},
+        ]
+    });
 
     function addTask(title: string, todolistId: string) {
         let newTask = {id: v1(), title: title, isDone: false}
@@ -77,29 +100,6 @@ function App() {
             setToDolists([...toDoLists]);
         }
     }
-
-    let toDoListId1 = v1();
-    let toDoListId2 = v1();
-
-    let [toDoLists, setToDolists] = useState<Array<TodolistType>>([
-        {id: toDoListId1, title: "What to learn", filter: "all"},
-        {id: toDoListId2, title: "What to buy", filter: "all"},
-    ]);
-
-    let [tasksObj, setTasks] = useState<TasksStateType>({
-        [toDoListId1]: [
-            {id: v1(), title: "CSS", isDone: true},
-            {id: v1(), title: "JS", isDone: true},
-            {id: v1(), title: "React", isDone: false},
-            {id: v1(), title: "Html", isDone: true},
-        ],
-        [toDoListId2]: [
-            {id: v1(), title: "Book", isDone: true},
-            {id: v1(), title: "Milk", isDone: true},
-            {id: v1(), title: "Beer", isDone: false},
-            {id: v1(), title: "Bread", isDone: true},
-        ]
-    });
 
     function addTodolist(title: string) {
         let todolist: TodolistType = {

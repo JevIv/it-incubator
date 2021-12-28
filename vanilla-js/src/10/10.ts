@@ -1,9 +1,8 @@
-
 export type UserType = {
     name: string
     age: number
     hair: number
-    address: {city: string, house?: number}
+    address: { city: string, house?: number }
 }
 
 export type LaptopType = {
@@ -16,6 +15,10 @@ export type UserWithLaptopType = UserType & {
 
 export type UserWithBooksType = UserType & {
     books: Array<string>
+}
+type CompanyType = { id: number, title: string };
+export type CompaniesType = {
+    companies: Array<CompanyType>
 }
 
 export const makeHairCut = (u: UserType, length: number) => {
@@ -54,10 +57,10 @@ export const moveUser = (u: UserWithLaptopType, newPlace: string) => {
             city: newPlace
         }
     }
-/*    copy.address = {
-        ...u.address,
-        city: newPlace
-    }*/
+    /*    copy.address = {
+            ...u.address,
+            city: newPlace
+        }*/
 
     return copy
 }
@@ -69,4 +72,60 @@ export const upgradeUserLaptop = (u: UserWithLaptopType, newLaptop: string) => {
             title: newLaptop
         }
     }
+}
+export const updateBook = (u: UserWithLaptopType & UserWithBooksType, oldBook: string, newBook: string) => {
+    return {
+        ...u,
+        books: u.books.map(b => b === oldBook ? newBook : b)
+        /*books: u.books.map(b => {
+            if (b === oldBook) {
+                return newBook
+            } else {
+                return b
+            }
+
+        })*/
+    }
+}
+
+export const removeBook = (u: UserWithLaptopType & UserWithBooksType, bookForDelete: string) => {
+    return {
+        ...u,
+        books: u.books.filter(b => b !== bookForDelete)
+    }
+}
+export const addCompanyToUser = (u: UserWithLaptopType & UserWithBooksType & CompaniesType, newCompany: { id: number, title: string }) => {
+    return {
+        ...u,
+        companies: [...u.companies, newCompany]
+    }
+}
+
+export const updateCompanyTitle = (u: CompaniesType, id: number, newTitle: string ) => {
+    /*return {
+        ...u,
+        companies: u.companies.map(c => c.id === id ? {...c, title: newTitle} : c)
+    }*/
+
+    const copy: CompaniesType = {
+        ...u,
+        companies: u.companies.map(c => {
+            if (c.id === id) {
+                return {...c, title: newTitle};
+            }else return c
+        })
+    }
+    return copy
+}
+
+export const updateCompanyTitle2 = (companies: { [ key: string ]: Array<CompanyType> },
+                                    userName: string,
+                                    companyId: number,
+                                    newTitle: string ) => {
+
+    let companyCopy = {...companies}
+
+    companyCopy[userName] = companyCopy[userName].map(c => c.id === companyId ? {...c, title: newTitle} : c)
+
+    return companyCopy;
 }

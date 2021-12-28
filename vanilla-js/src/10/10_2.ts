@@ -26,7 +26,7 @@ let user = {id: 100500, name: "igor"}
 
 users[user.id] = user;
 delete users[user.id]
-user[user.id].name = "Victor"
+//user[user.id].name = "Victor"
 
 export const usersArray2 = [
     {id:101, name: "Evgeny"},
@@ -39,4 +39,4 @@ export const usersArray2 = [
 
 //usersArray2.push(user)
 //let usersCopy = [...usersArray2.filter(), user]
-let usersArray2 = usersArray2.filter(u => u.id !== user.id)
+//let usersArray2 = usersArray2.filter(u => u.id !== user.id)

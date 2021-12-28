@@ -1,5 +1,6 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent} from 'react'
 import s from './SuperInputText.module.css'
+import { Input } from 'semantic-ui-react'
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
@@ -43,15 +44,26 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
 
     return (
         <>
-            <input
-                type={'text'}
-                onChange={onChangeCallback}
-                onKeyPress={onKeyPressCallback}
-                className={finalInputClassName}
+            <form className="ui form">
+{/*                <input
+                    type={'text'}
+                    onChange={onChangeCallback}
+                    onKeyPress={onKeyPressCallback}
+                    className={finalInputClassName}
 
-                {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
-            />
-            {error && <span className={finalSpanClassName}>{error}</span>}
+                    {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
+                />*/}
+                <Input
+                    type={'text'}
+                    className={"ui input error"}
+                    onChange={onChangeCallback}
+                    onKeyPress={onKeyPressCallback}
+                    placeholder={'Type tour text'}
+
+                />
+
+                {error && <div className={finalSpanClassName}>{error}</div>}
+            </form>
         </>
     )
 }

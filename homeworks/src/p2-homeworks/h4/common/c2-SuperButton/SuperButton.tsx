@@ -1,5 +1,6 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
 import s from './SuperButton.module.css'
+import { Button } from 'semantic-ui-react'
 
 // тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
@@ -17,11 +18,18 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
     const finalClassName = `${red ? s.red : s.default} ${className}`
 
     return (
-        <button
-            className={finalClassName}
-            {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
-        />
-    )
+        <Button children={restProps.children}
+                disabled={restProps.children === "disabled" ? true : false}
+                color={red ? "red" : "grey"}
+                basic
+                onClick={restProps.onClick}
+        ></Button>
+
+)
 }
+/*<button
+    className={finalClassName}
+    {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
+></button>*/
 
 export default SuperButton

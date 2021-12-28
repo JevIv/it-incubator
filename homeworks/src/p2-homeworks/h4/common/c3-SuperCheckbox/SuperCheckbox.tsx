@@ -1,5 +1,6 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react'
+import React, {ChangeEvent, DetailedHTMLProps, FormEvent, InputHTMLAttributes} from 'react'
 import s from './SuperCheckbox.module.css'
+import { Checkbox } from 'semantic-ui-react'
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
@@ -19,7 +20,8 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
         ...restProps// все остальные пропсы попадут в объект restProps
     }
 ) => {
-    const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeCallback = (e: FormEvent<HTMLInputElement>) => {
+        onChangeChecked(!e.currentTarget.checked)
         // сделайте так чтоб работал onChange и onChangeChecked
     }
 
@@ -27,16 +29,20 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
 
     return (
         <label>
-            <input
-                type={'checkbox'}
-                onChange={onChangeCallback}
-                className={finalInputClassName}
-
-                {...restProps} // отдаём инпуту остальные пропсы если они есть (checked например там внутри)
-            />
+            <Checkbox
+                checked={restProps.checked}
+                onChange={(e) => onChangeCallback(e)} />
             {children && <span className={s.spanClassName}>{children}</span>}
         </label> // благодаря label нажатие на спан передастся в инпут
     )
 }
+
+/*<input
+    type={'checkbox'}
+    onChange={onChangeCallback}
+    className={finalInputClassName}
+
+    {...restProps} // отдаём инпуту остальные пропсы если они есть (checked например там внутри)
+/>*/
 
 export default SuperCheckbox

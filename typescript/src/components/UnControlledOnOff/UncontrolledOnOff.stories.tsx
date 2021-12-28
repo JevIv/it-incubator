@@ -21,6 +21,6 @@ export const DefaultInputValue = () => <input defaultValue={"yo"}/>;
 export const ModeChanging = (props: PropsType) => {
     const [value, setValue] = useState<boolean>(true);
     return (
-        <UnControlledOnOff on={value} onChange={setValue}/>
+        <UnControlledOnOff onChange={setValue}/>
         )
 };

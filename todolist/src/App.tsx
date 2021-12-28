@@ -24,20 +24,14 @@ const useStyles = makeStyles((theme: Theme) =>
 export type TaskType = {
     id: string
     title: string
-    isDone: boolean
-}
-
+    isDone: boolean }
 export type filterType = "All" | "Active" | "Completed"
-
 export type TodoListType = {
     id: string,
     title: string,
-    filter: filterType
-}
-
+    filter: filterType }
 export type TaskStateType = {
-    [key: string]: Array<TaskType>
-}
+    [key: string]: Array<TaskType> }
 
 function App() {
     //BLL: business layer

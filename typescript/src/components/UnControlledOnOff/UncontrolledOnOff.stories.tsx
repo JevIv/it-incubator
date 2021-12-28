@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import OnOff from "./OnOff";
 import {action} from "@storybook/addon-actions";
+import {UnControlledOnOff} from "./UnControlledOnOff";
 
 export default {
-    title: 'OnOff',
-    component: OnOff,
+    title: 'UnControlledOnOff',
+    component: UnControlledOnOff,
 }
 
 type PropsType = {
@@ -14,12 +14,13 @@ type PropsType = {
 
 const callback = action("on or off been clicked");
 
-export const OnMode = (props: PropsType) => <OnOff on={true} onChange={callback}/>;
-export const OffMode = (props: PropsType) => <OnOff on={false} onChange={callback}/>;
+export const OnMode = (props: PropsType) => <UnControlledOnOff defaultOn={true} onChange={callback}/>;
+export const OffMode = (props: PropsType) => <UnControlledOnOff defaultOn={false} onChange={callback}/>;
+export const DefaultInputValue = () => <input defaultValue={"yo"}/>;
 
 export const ModeChanging = (props: PropsType) => {
     const [value, setValue] = useState<boolean>(true);
     return (
-        <OnOff on={value} onChange={setValue}/>
+        <UnControlledOnOff on={value} onChange={setValue}/>
         )
 };

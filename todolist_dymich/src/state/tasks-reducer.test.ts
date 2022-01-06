@@ -29,7 +29,7 @@ test("correct task should be removed from correct array",()=> {
 
 });
 
-test("correct task should be removed from correct array",()=> {
+test("new task should be added to correct array",()=> {
 
     const startState:  TasksStateType = {
         "toDoListId1": [

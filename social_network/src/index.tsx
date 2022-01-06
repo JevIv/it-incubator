@@ -1,5 +1,5 @@
 import reportWebVitals from './reportWebVitals';
-import state, {addPost, subscribe, updateNewPostText} from "./redux/state";
+import store from "./redux/state";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -8,22 +8,24 @@ import App from './App';
 import {RootStateType} from "./redux/state";
 
 
+/*
 type AppPropsType = {
     addPost: (postMessage: string) => void
     state: RootStateType
     updateNewPostText: (postMessage: string) => void
 }
+*/
 
 
-const render = () => ReactDOM.render(
-    <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>,
+const rerenderEntireTree = (state: RootStateType) => ReactDOM.render(
+    <App state={state} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>,
     document.getElementById('root')
 );
 
 
-render();
+rerenderEntireTree(store.getState());
 
-subscribe(render);
+store.subscribe(rerenderEntireTree);
 
 
 // If you want to start measuring performance in your app, pass a function

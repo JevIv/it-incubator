@@ -13,7 +13,7 @@ type AppPropsType= {
     updateNewPostText: (postMessage: string) => void
 }
 
-const App = (props: AppPropsType) => {
+const App: React.FC<AppPropsType> = (props) => {
 
     return (
         <BrowserRouter>

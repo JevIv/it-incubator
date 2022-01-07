@@ -17,13 +17,13 @@ type AppPropsType = {
 */
 
 
-const rerenderEntireTree = (state: RootStateType) => ReactDOM.render(
-    <App state={state} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>,
+const rerenderEntireTree = () => ReactDOM.render(
+    <App state={store.getState()} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>,
     document.getElementById('root')
 );
 
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 
 store.subscribe(rerenderEntireTree);
 

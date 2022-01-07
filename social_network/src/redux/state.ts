@@ -1,6 +1,48 @@
 
-let store = {
-    _state<RootStateType>: {
+
+export type PostType = {
+    id: number
+    post: string
+    likesCount: number
+}
+export type DialogType = {
+    id: number
+    name: string
+}
+export type MessageType = {
+    id: number
+    message: string
+}
+
+export type ProfilePageType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+export type DialogsPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
+export type SidebarType = {}
+
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sidebar: SidebarType
+}
+
+export type StoreType = {
+    _state: RootStateType
+    updateNewPostText: (postMessage: string) => void
+    addPost: (postMessage: string) => void
+    subscribe: (observer: () => void) => void
+    _callSubscriber: (_state: RootStateType) => void
+    getState: () => RootStateType
+
+
+}
+
+let store: StoreType = {
+    _state: {
         profilePage: {
             posts: [
                 {id: 1, post: "My first post", likesCount: 12},
@@ -41,7 +83,7 @@ let store = {
     addPost(postMessage: string) {
         const newPost: PostType = {
             id: 5,
-            post: this._state.profilePage.postMessage,
+            post: this._state.profilePage.newPostText,
             likesCount: 0
         };
 
@@ -60,35 +102,6 @@ let store = {
 
 }
 
-export type PostType = {
-    id: number
-    post: string
-    likesCount: number
-}
-export type DialogType = {
-    id: number
-    name: string
-}
-export type MessageType = {
-    id: number
-    message: string
-}
-
-export type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
-}
-export type DialogsPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-}
-export type SidebarType = {}
-
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebar: SidebarType
-}
-window.store = store;
+//window.store = store;
 export default store;
 

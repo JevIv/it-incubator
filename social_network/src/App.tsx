@@ -8,7 +8,8 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {RootStateType} from "./redux/state";
 
 type AppPropsType= {
-    state: RootStateType,
+    state: RootStateType
+    dispatch: () => void
     addPost: (postMessage: string) => void
     updateNewPostText: (postMessage: string) => void
 }
@@ -23,8 +24,8 @@ const App: React.FC<AppPropsType> = (props) => {
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path="/profile/" element={<Profile profilePage={props.state.profilePage}
-                                                                  addPost={props.addPost}
-                                                                  updateNewPostText={props.updateNewPostText}/>}/>
+                                                                  dispatch={props.dispatch}
+                                                                  />}/>
                         <Route path="/dialogs/" element={<Dialogs state={props.state.dialogsPage}/>}/>
                         {/*<Route path="/news/" element={<Dialogs postData={props.postData}/>}/>
                         <Route path="/music/" element={<Dialogs postData={props.postData}/>}/>

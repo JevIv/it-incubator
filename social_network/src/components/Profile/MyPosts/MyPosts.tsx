@@ -18,7 +18,8 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        props.addPost(props.newPostText)
+        props.dispatch({type: "ADD-POST"});
+        //props.addPost(props.newPostText)
         /*if (newPostElement.current) {
             let text = newPostElement.current.value;
             props.addPost(text);
@@ -27,7 +28,9 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     let onPostChange = () => {
         let text = newPostElement.current? newPostElement.current.value : "---";
-        props.updateNewPostText(text);
+        let action = {type: "UPADATE-NEW-POST-TEXT", postMessage: text};
+        props.dispatch(action);
+        //props.updateNewPostText(text);
     }
 
     return (

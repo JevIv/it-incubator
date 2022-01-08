@@ -5,13 +5,13 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {RootStateType} from "./redux/state";
+import {ActionsType, RootStateType} from "./redux/state";
 
 type AppPropsType= {
     state: RootStateType
-    dispatch: () => void
-    addPost: (postMessage: string) => void
-    updateNewPostText: (postMessage: string) => void
+    dispatch: (action: ActionsType) => void
+    //addPost: (postMessage: string) => void
+    //updateNewPostText: (postMessage: string) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {

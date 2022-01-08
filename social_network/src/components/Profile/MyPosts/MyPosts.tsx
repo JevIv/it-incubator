@@ -1,14 +1,22 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {PostType} from "../../../redux/state";
+import {
+    ActionsType,
+    addPostAC,
+    PostType,
+    updateNewPostAC
+} from "../../../redux/state";
 
 type MyPostsPropsType = {
     posts:  Array<PostType>
-    addPost: (postMessage: string) => void
+    //addPost: (postMessage: string) => void
     newPostText: string
-    updateNewPostText: (postMessage: string) => void
+    //updateNewPostText: (postMessage: string) => void
+    dispatch: (action: ActionsType) => void
 }
+
+
 
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -18,7 +26,7 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        props.dispatch({type: "ADD-POST"});
+        props.dispatch(addPostAC(props.newPostText));
         //props.addPost(props.newPostText)
         /*if (newPostElement.current) {
             let text = newPostElement.current.value;
@@ -26,10 +34,13 @@ const MyPosts = (props: MyPostsPropsType) => {
         }*/
     }
 
-    let onPostChange = () => {
-        let text = newPostElement.current? newPostElement.current.value : "---";
-        let action = {type: "UPADATE-NEW-POST-TEXT", postMessage: text};
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        //let text = newPostElement.current ? newPostElement.current.value : "---";
+        let text = e.currentTarget.value;
+
+        const action = updateNewPostAC(text)
         props.dispatch(action);
+        //let action = {type: "UPDATE-NEW-POST-TEXT", postMessage: text};
         //props.updateNewPostText(text);
     }
 

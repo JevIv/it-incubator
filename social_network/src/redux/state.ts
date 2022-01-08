@@ -28,17 +28,29 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
+/*type AddPostActionType = {
+    type: "ADD-POST"
+    newPostText: string
+}*/
+
+type AddPostActionType = ReturnType<typeof addPostAC>
+
+type UpdateNewPostActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    postMessage: string
+}
+
 export type StoreType = {
     _state: RootStateType
-    updateNewPostText: (postMessage: string) => void
-    addPost: (postMessage: string) => void
     subscribe: (observer: () => void) => void
     _callSubscriber: (_state: RootStateType) => void
     getState: () => RootStateType
-    dispatch: (action: string) => void
-
-
+    dispatch: (action: ActionsType) => void
 }
+
+export type ActionsType =
+    AddPostActionType
+    | UpdateNewPostActionType
 
 let store: StoreType = {
     _state: {
@@ -93,13 +105,26 @@ let store: StoreType = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = "";
             this._callSubscriber(this._state);
-        } else if (action.type === "UPADATE-NEW-POST-TEXT") {
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
             this._state.profilePage.newPostText = action.postMessage;
-            this._state.profilePage.newPostText = "";
+            //this._state.profilePage.newPostText = "";
             this._callSubscriber(this._state);
         }
     }
+}
 
+export const addPostAC = (newPostText: string) => {
+    return {
+        type: "ADD-POST",
+        newPostText: newPostText
+    } as const
+}
+
+export const updateNewPostAC = (text: string) : UpdateNewPostActionType => {
+    return {
+        type: "UPDATE-NEW-POST-TEXT",
+        postMessage: text
+    } as const
 }
 
 //window.store = store;

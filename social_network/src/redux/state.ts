@@ -19,6 +19,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageBody: string
 }
 export type SidebarType = {}
 
@@ -40,6 +41,9 @@ type UpdateNewPostActionType = {
     postMessage: string
 }
 
+type SendMessageActionType = ReturnType<typeof sendMessageAC>
+type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageBodyAC>
+
 export type StoreType = {
     _state: RootStateType
     subscribe: (observer: () => void) => void
@@ -51,6 +55,8 @@ export type StoreType = {
 export type ActionsType =
     AddPostActionType
     | UpdateNewPostActionType
+    | SendMessageActionType
+    | UpdateNewMessageBodyActionType
 
 let store: StoreType = {
     _state: {
@@ -82,6 +88,7 @@ let store: StoreType = {
                 {id: 5, name: "Sveta"},
                 {id: 6, name: "Alex"},
             ],
+            newMessageBody: ""
         },
         sidebar: {}
     },
@@ -109,6 +116,14 @@ let store: StoreType = {
             this._state.profilePage.newPostText = action.postMessage;
             //this._state.profilePage.newPostText = "";
             this._callSubscriber(this._state);
+        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
+            this._state.dialogsPage.newMessageBody = action.body;
+            this._callSubscriber(this._state);
+        } else if (action.type === "SEND-MESSAGE") {
+            const body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = "";
+            this._state.dialogsPage.messages.push({id: 6, message: body});
+            this._callSubscriber(this._state);
         }
     }
 }
@@ -124,6 +139,17 @@ export const updateNewPostAC = (text: string) : UpdateNewPostActionType => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
         postMessage: text
+    } as const
+}
+export const sendMessageAC = () => {
+    return {
+        type: "SEND-MESSAGE"
+    } as const
+}
+export const updateNewMessageBodyAC = (body: string) => {
+    return {
+        type: "UPDATE-NEW-MESSAGE-BODY",
+        body: body,
     } as const
 }
 

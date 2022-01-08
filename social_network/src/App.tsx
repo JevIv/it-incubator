@@ -5,10 +5,11 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {ActionsType, RootStateType} from "./redux/state";
+import {ActionsType, RootStateType, StoreType} from "./redux/state";
 
 type AppPropsType= {
     state: RootStateType
+    store: StoreType
     dispatch: (action: ActionsType) => void
     //addPost: (postMessage: string) => void
     //updateNewPostText: (postMessage: string) => void
@@ -26,7 +27,7 @@ const App: React.FC<AppPropsType> = (props) => {
                         <Route path="/profile/" element={<Profile profilePage={props.state.profilePage}
                                                                   dispatch={props.dispatch}
                                                                   />}/>
-                        <Route path="/dialogs/" element={<Dialogs state={props.state.dialogsPage}/>}/>
+                        <Route path="/dialogs/" element={<Dialogs store={props.store}/>}/>
                         {/*<Route path="/news/" element={<Dialogs postData={props.postData}/>}/>
                         <Route path="/music/" element={<Dialogs postData={props.postData}/>}/>
                         <Route path="/settings/" element={<Dialogs postData={props.postData}/>}/>*/}

@@ -8,14 +8,12 @@ import {
 import {ActionsType, PostType} from "../../../redux/state";
 
 type MyPostsPropsType = {
-    posts:  Array<PostType>
-    //addPost: (postMessage: string) => void
+    posts: Array<PostType>
+    addPost: () => void
     newPostText: string
-    //updateNewPostText: (postMessage: string) => void
+    updateNewPostText: (postMessage: string) => void
     dispatch: (action: ActionsType) => void
 }
-
-
 
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -24,23 +22,13 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let addPost = () => {
-        props.dispatch(addPostAC(props.newPostText));
-        //props.addPost(props.newPostText)
-        /*if (newPostElement.current) {
-            let text = newPostElement.current.value;
-            props.addPost(text);
-        }*/
+    let onAddPost = () => {
+        props.addPost();
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        //let text = newPostElement.current ? newPostElement.current.value : "---";
         let text = e.currentTarget.value;
-
-        const action = updateNewPostAC(text)
-        props.dispatch(action);
-        //let action = {type: "UPDATE-NEW-POST-TEXT", postMessage: text};
-        //props.updateNewPostText(text);
+        props.updateNewPostText(text);
     }
 
     return (
@@ -48,11 +36,11 @@ const MyPosts = (props: MyPostsPropsType) => {
             <h3>My posts</h3>
             <div>
                 <textarea ///ref={newPostElement}
-                          value={props.newPostText}
-                          onChange={onPostChange}/>
+                    value={props.newPostText}
+                    onChange={onPostChange}/>
             </div>
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
                 <button>Remove post</button>
             </div>
             <div className={s.posts}>
@@ -60,8 +48,8 @@ const MyPosts = (props: MyPostsPropsType) => {
                 {/*<Post message={postData[0].post} likesCount={postData[0].likesCount}/>*/}
             </div>
         </div>
-)
-    ;
+    )
+        ;
 }
 
 export default MyPosts;

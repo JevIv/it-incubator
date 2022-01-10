@@ -1,6 +1,7 @@
-
 export type SiderbarActionType = any
 
-export const sidebarReducer = (state: any, action:SiderbarActionType) => {
+let initialState = {}
+
+export const sidebarReducer = (state = initialState<any>, action:SiderbarActionType) => {
     return state;
 }

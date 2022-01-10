@@ -8,6 +8,7 @@ import {StoreType} from "../../redux/state";
 
 type DialogsPropsType = {
     store: StoreType
+    newMessageBody: string
 }
 
 const Dialogs = (props: DialogsPropsType) => {

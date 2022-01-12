@@ -8,6 +8,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {Menu} from "@material-ui/icons";
 import {AddTodolistAC, ChangeTodolistTitleAC, RemoveTodolistAC, todoListsReducer} from "./state/todolist-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -44,72 +46,48 @@ export type TaskStateType = {
     [key: number]: Array<TaskType> | string
 }*/
 
-function AppWithReducers() {
+function AppWithRedux() {
     //BLL: business layer
     //const todoListTitle_2: string = "2 To do list"
     const classes = useStyles();
-    const todoListID_1 = v1();
-    const todoListID_2 = v1();
-    const [todoLists, dispatchToTodolists] = useReducer(todoListsReducer,[
-        {id: todoListID_1, title: "What to learn", filter: "All"},
-        {id: todoListID_2, title: "What to buy", filter: "All"},]);
 
-    const [tasks, dispatchToTasks] = useReducer(tasksReducer, {
-        [todoListID_1]: [
-            {id: v1(), title: "HTML", isDone: true},
-            {id: v1(), title: "CSS", isDone: true},
-            {id: v1(), title: "REACT", isDone: false},
-            {id: v1(), title: "TypeScript", isDone: true},
-            {id: v1(), title: "JavaScript", isDone: false},
-            {id: v1(), title: "Python", isDone: true},
-            {id: v1(), title: "Django", isDone: false},
-        ],
-        [todoListID_2]: [
-            {id: v1(), title: "Milk", isDone: true},
-            {id: v1(), title: "Beer", isDone: true},
-            {id: v1(), title: "Bread", isDone: false},
-            {id: v1(), title: "Butter", isDone: true},
-            {id: v1(), title: "Pork", isDone: false},
-            {id: v1(), title: "Apples", isDone: true},
-            {id: v1(), title: "Celery", isDone: false},
-        ]
-    });
+    const todoLists = useSelector<AppRootStateType, Array<TodoListType>>((state) => state.todolists)
+    const tasks = useSelector<AppRootStateType, TaskStateType>((state) => state.tasks)
+    const dispatch = useDispatch()
 
     const removeTask = (mId: string, todoListID: string) => {
         let action = removeTaskAC(mId, todoListID)
-        dispatchToTasks(action)
+        dispatch(action)
     }
 
     const addTask = (title: string, todoListID: string) => {
         let action = addTaskAC(title, todoListID)
-        dispatchToTasks(action)
+        dispatch(action)
     }
 
     const changeTaskStatus = (id: string, value: boolean, todoListID: string) => {
         let action = changeTaskStatusAC(id, todoListID, value)
-        dispatchToTasks(action)
+        dispatch(action)
     }
 
-    const changeTaskTitle = (id: string, title: string, todoListID: string) => {
+    const changeTaskTitle = (id: string, todoListID: string,title: string,) => {
         let action = changeTaskTitleAC(id, todoListID, title)
-        dispatchToTasks(action)
+        dispatch(action)
     }
 
     const changeTodoListTitle = (title: string, todoListID: string) => {
         let action = ChangeTodolistTitleAC(title, todoListID)
-        dispatchToTodolists(action)
+        dispatch(action)
     }
 
     const addTodoList = (title: string) => {
         let action = AddTodolistAC(title)
-        dispatchToTodolists(action)
-        dispatchToTasks(action)
+        dispatch(action)
     }
 
     const removeTodoList = (todoListID: string) => {
         let action = RemoveTodolistAC(todoListID)
-        dispatchToTasks(action)
-        dispatchToTodolists(action)
+        dispatch(action)
     }
 
     const todoListComponents = todoLists.map(tl => {
@@ -119,7 +97,7 @@ function AppWithReducers() {
                     tasks[tl.id]
         return (
             <Paper elevation={3} style={{ padding: "10px", margin: "10px"}} >
-            {/*<ToDoList key={tl.id}
+            <ToDoList key={tl.id}
                       id={tl.id}
                       title={tl.title}
                       filter={tl.filter}
@@ -132,8 +110,7 @@ function AppWithReducers() {
                       removeTodoList={removeTodoList}
                       changeTaskTitle={changeTaskTitle}
                       changeTodoListTitle={changeTodoListTitle}
-                      dispatchToTodolists={dispatchToTodolists}
-            />*/}
+            />
             </Paper>
         )
     })
@@ -171,4 +148,4 @@ function AppWithReducers() {
     );
 }
 
-export default AppWithReducers;
+export default AppWithRedux;

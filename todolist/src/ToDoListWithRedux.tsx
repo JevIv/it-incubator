@@ -8,6 +8,10 @@ import {Button, ButtonGroup, Checkbox, List, ListItem} from "@material-ui/core";
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 import {ChangeTodolistFilterAC} from "./state/todolist-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
+import {TaskStateType} from "./AppWithRedux";
+import {addTaskAC} from "./state/tasks-reducer";
 
 type PropsType = { //object
     key: string,
@@ -25,17 +29,22 @@ type PropsType = { //object
     removeTodoList: (todoListID: string) => void
     changeTaskTitle: (id: string, todoListID: string, title: string) => void
     changeTodoListTitle: (title: string, todoListID: string) => void
-    dispatch: any
 }
 
 function ToDoList(props: PropsType) { // prinemaet object
 
+    const todoList = useSelector<AppRootStateType, TodoListType>((state) => state.todolists
+        .filter(todo => todo.id === props.id)[0])
+    const tasks = useSelector<AppRootStateType, Array<TaskType>>((state) => state.tasks[props.id])
+    const dispatch = useDispatch()
+
     const addTask = (title: string) => {
-        props.addTask(title, props.id)
+        let action = addTaskAC(title, props.id)
+        dispatch(action)
     }
     const changeFilterAllHandler = (value: filterType, todoListID: string) => {
         const action = ChangeTodolistFilterAC(value,todoListID)
-        props.dispatch(action)
+        dispatch(action)
     }
     const removeTaskHandler = (mID: string, todoListID: string) => {
         props.removeTask(mID, todoListID)
@@ -46,6 +55,13 @@ function ToDoList(props: PropsType) { // prinemaet object
     const changeTodoListTitle = (newTitle: string) => {
         props.changeTodoListTitle(newTitle, props.id); //vazna posledovateljnostj props vazna
     }
+
+    const todoListComponents = todoLists.map(tl => {
+        let newTask = tl.filter === "All" ? tasks[tl.id] : //if all return all tasks
+            tl.filter === "Active" ? tasks[tl.id].filter((f => !f.isDone)) : //if active return undone
+                tl.filter === "Completed" ? tasks[tl.id].filter((f => f.isDone)) : //if completed return isDona
+                    tasks[tl.id]
+
     return (
         <div>
             <h3>

@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import {filterType, TaskType, TodoListType} from "./App";
+import {filterType, TaskType, TodoListType} from "./AppWithReducers";
 import {ButtonComponent} from "./components/ButtonComponent";
 import s from "./ToDoList.module.css"
 import AddItemForm from "./components/AddItemForm";
@@ -7,6 +7,7 @@ import EditableSpan from "./components/EditableSpan";
 import {Button, ButtonGroup, Checkbox, List, ListItem} from "@material-ui/core";
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
+import {ChangeTodolistFilterAC} from "./state/todolist-reducer";
 
 type PropsType = { //object
     key: string,
@@ -20,10 +21,11 @@ type PropsType = { //object
     tasksArray: Array<TaskType>
     changeTaskStatus: (id: string, value: boolean, todoListID: string) => void
     todoLists: Array<TodoListType>
-    setTodoLists: (array: Array<TodoListType>)=> void
+    //setTodoLists: (array: Array<TodoListType>)=> void
     removeTodoList: (todoListID: string) => void
     changeTaskTitle: (id: string, title: string, todoListID: string) => void
     changeTodoListTitle: (title: string, todoListID: string) => void
+    dispatchToTodolists: any
 }
 
 function ToDoList(props: PropsType) { // prinemaet object
@@ -32,8 +34,8 @@ function ToDoList(props: PropsType) { // prinemaet object
         props.addTask(title, props.id)
     }
     const changeFilterAllHandler = (value: filterType, todoListID: string) => {
-        const updatedTodoLists = props.todoLists.map(tl => tl.id === todoListID ? {...tl, filter: value} : tl)
-        props.setTodoLists(updatedTodoLists);
+        const action = ChangeTodolistFilterAC(value,todoListID)
+        props.dispatchToTodolists(action)
     }
     const removeTaskHandler = (mID: string, todoListID: string) => {
         props.removeTask(mID, todoListID)

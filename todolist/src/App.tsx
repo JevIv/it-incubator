@@ -126,8 +126,9 @@ function App() {
                 tl.filter === "Completed" ? tasks[tl.id].filter((f => f.isDone)) : //if completed return isDona
                     tasks[tl.id]
         return (
+            <div>lol</div>/*
             <Paper elevation={3} style={{ padding: "10px", margin: "10px"}} >
-            {/*<ToDoList key={tl.id}
+            <ToDoList key={tl.id}
                       id={tl.id}
                       title={tl.title}
                       filter={tl.filter}
@@ -140,8 +141,8 @@ function App() {
                       removeTodoList={removeTodoList}
                       changeTaskTitle={changeTaskTitle}
                       changeTodoListTitle={changeTodoListTitle}
-            />*/}
-            </Paper>
+            />
+            </Paper>*/
         )
     })
     //UI: UI layer

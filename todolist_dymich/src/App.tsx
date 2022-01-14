@@ -123,8 +123,8 @@ function App() {
                     if (tl.filter === "active") {
                         tasksForTodolist = tasksForTodolist.filter(t => !t.isDone);
                     }
-                    return (
-                        <Todolist key={tl.id}
+                    return (<div>lol</div>
+                       /* <Todolist key={tl.id}
                                   todoListId={tl.id}
                                   title={tl.title}
                                   tasks={tasksForTodolist}
@@ -135,7 +135,7 @@ function App() {
                                   filter={tl.filter}
                                   removeTodoList={removeTodoList}
                                   changeTaskTitle={changeTaskTitle}
-                                  changeTodoListTitle={changeTodoListTitle}/>
+                                  changeTodoListTitle={changeTodoListTitle}/>*/
                     )
                 })
             }

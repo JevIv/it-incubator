@@ -27,36 +27,51 @@ export function Todolist(props: PropsType) {
 
     const onAllClickHandler = (value: FilterValuesType, todoLisId: string) => {
         const action = changeTodolistFilterAC(value, todoLisId)
-        dispatch(action)}
-    const onRemoveHandler = (id: string, todoLisId:string) => {
+        dispatch(action)
+    }
+    const onRemoveHandler = (id: string, todoLisId: string) => {
         const action = removeTaskAC(id, todoLisId)
-        dispatch(action)}
+        dispatch(action)
+    }
     const checkBoxHandler = (id: string, e: ChangeEvent<HTMLInputElement>, todoLisId: string) => {
         const action = changeTaskStatusAC(id, todoLisId, e.currentTarget.checked)
-        dispatch(action)}
+        dispatch(action)
+    }
     const removeTodoList = () => {
         const action = removeTodolistAC(props.todoListId)
-        dispatch(action)}
+        dispatch(action)
+    }
     const changeTodoListTitle = (newTitle: string) => {
-        const action = changeTodolistTitleAC(newTitle,props.todoListId);
-        dispatch(action)}
+        const action = changeTodolistTitleAC(newTitle, props.todoListId);
+        dispatch(action)
+    }
     const addTask = (title: string) => {
         const action = addTaskAC(title, props.todoListId);
-        dispatch(action)}
+        dispatch(action)
+    }
     const onChangeTitleHandler = (newTitle: string, taskID: string) => {
         const action = changeTaskTitleStatusAC(taskID, props.todoListId, newTitle);
-        dispatch(action)}
+        dispatch(action)
+    }
+
+    let tasksForTodolist = tasks;
+    if (props.filter === "completed") {
+        tasksForTodolist = tasksForTodolist.filter(t => t.isDone === true);
+    }
+    if (props.filter === "active") {
+        tasksForTodolist = tasksForTodolist.filter(t => !t.isDone);
+    }
 
     return (
         <div>
             <h3>
-                <EditableSpan taskID={props.todoListId} title={props.title} onChange={changeTodoListTitle} />
+                <EditableSpan taskID={props.todoListId} title={props.title} onChange={changeTodoListTitle}/>
                 <button onClick={removeTodoList}>X</button>
             </h3>
             <AddItemForm addItem={addTask}/>
             <ul>
                 {
-                    tasks.map(t =>
+                    tasksForTodolist.map(t =>
                         <li key={t.id} className={t.isDone ? s.isDone : ""}>
                             <input type="checkbox"
                                    checked={t.isDone}

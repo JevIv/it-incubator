@@ -1,4 +1,4 @@
-import React, {useReducer, useState} from 'react';
+import React from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./Todolist";
 import {AddItemForm} from "./AddItemForm";
@@ -33,13 +33,13 @@ function AppWithRedux() {
             <AddItemForm addItem={addTodolist} />
             {
                 todolists.map((tl) => {
-                    let tasksForTodolist = tasks[tl.id];
+                    /*let tasksForTodolist = tasks[tl.id];
                     if (tl.filter === "completed") {
                         tasksForTodolist = tasksForTodolist.filter(t => t.isDone === true);
                     }
                     if (tl.filter === "active") {
                         tasksForTodolist = tasksForTodolist.filter(t => !t.isDone);
-                    }
+                    }*/
                     return (
                         <Todolist key={tl.id}
                                   todoListId={tl.id}

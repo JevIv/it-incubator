@@ -118,7 +118,6 @@ type TaskPropsType = {
 }
 
 const Task = React.memo((props: TaskPropsType) => {
-    debugger
     return (
         <li key={props.task.id} className={props.task.isDone ? s.isDone : ""}>
             <input type="checkbox"

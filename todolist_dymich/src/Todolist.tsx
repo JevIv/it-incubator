@@ -117,7 +117,7 @@ type TaskPropsType = {
 
 }
 
-const Task = React.memo((props: TaskPropsType) => {
+export const Task = React.memo((props: TaskPropsType) => {
     return (
         <li key={props.task.id} className={props.task.isDone ? s.isDone : ""}>
             <input type="checkbox"

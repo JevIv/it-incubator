@@ -7,7 +7,7 @@ import {ActionsType, PostType} from "../../../redux/state";
 import MyPosts from "./MyPosts";
 
 type MyPostsPropsType = {
-    posts: Array<PostType>
+    store: any
     //addPost: (postMessage: string) => void
     newPostText: string
     //updateNewPostText: (postMessage: string) => void

@@ -23,7 +23,7 @@ const AddItemForm = (props: AddItemFormPropsType) => {
         setTitle(e.currentTarget.value);
         setError(false);
     }
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => {
         if (e.key === "Enter") {
             addHandler();
         }

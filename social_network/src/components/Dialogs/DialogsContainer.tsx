@@ -1,7 +1,4 @@
-import React, {ChangeEvent} from "react";
-import s from "./Dialogs.module.css";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
+import React from "react";
 import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
 import {StoreType} from "../../redux/state";
 import Dialogs from "./Dialogs";
@@ -24,7 +21,7 @@ const DialogsContainer = (props: DialogsPropsType) => {
         props.store.dispatch(updateNewMessageBodyAC(body));
     }
 
-    return <Dialogs store={} newMessageBody={} sendMessage={onSendMessageClick} dialogsPage={state}/>;
+    return <Dialogs sendMessage={onSendMessageClick} dialogsPage={state} newMessageBody={onNewMessageChange}/>;
 }
 
 export default DialogsContainer;

@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "chromatic": "^6.4.1",
     "gh-pages": "^3.2.3"
   }
 }

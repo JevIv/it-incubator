@@ -8,22 +8,25 @@ type AddItemFormPropsType = {
     addItem: (title: string) => void
 }
 
-const AddItemForm = (props: AddItemFormPropsType) => {
-    const [error, setError] = useState(true);
+const AddItemForm = React.memo((props: AddItemFormPropsType) => {
+    const [error, setError] = useState<String | null>(null)//(true);
     const [title, setTitle] = useState("") //input vsegda string
     const addHandler = () => {
         if (title.trim() !== "") {
             props.addItem(title.trim());
             setTitle("");
-        } else {
+        } /*else {
             setError(true);
-        }
+        }*/
     }
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value);
-        setError(false);
+        //setError(false);
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (error !== null) {
+            setError(null);
+        }
         if (e.key === "Enter") {
             addHandler();
         }
@@ -46,6 +49,6 @@ const AddItemForm = (props: AddItemFormPropsType) => {
             {/*{error && <div className={s.errorMessage}>Title is required</div>}*/}
         </div>
     );
-};
+});
 
 export default AddItemForm;

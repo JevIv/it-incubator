@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, useCallback, useState} from "react";
 import {filterType, TaskType, TodoListType} from "./AppWithReducers";
 import {ButtonComponent} from "./components/ButtonComponent";
 import s from "./ToDoList.module.css"
@@ -7,11 +7,11 @@ import EditableSpan from "./components/EditableSpan";
 import {Button, ButtonGroup, Checkbox, List, ListItem} from "@material-ui/core";
 import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
-import {ChangeTodolistFilterAC} from "./state/todolist-reducer";
+import {ChangeTodolistFilterAC, ChangeTodolistTitleAC} from "./state/todolist-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import {TaskStateType} from "./AppWithRedux";
-import {addTaskAC} from "./state/tasks-reducer";
+import {addTaskAC, changeTaskStatusAC, removeTaskAC} from "./state/tasks-reducer";
 
 type PropsType = { //object
     key: string,
@@ -20,15 +20,15 @@ type PropsType = { //object
     filter: filterType
     //tasks: Array<TaskType>
     //setFilter: (value: filterType) => void
-    removeTask: (mId: string, todoListID: string) => void //funkcija ni4ego ne vozvra6aet- bez return eto void
-    addTask: (title: string, todoListID: string) => void
+    //removeTask: (mId: string, todoListID: string) => void //funkcija ni4ego ne vozvra6aet- bez return eto void
+    //addTask: (title: string, todoListID: string) => void
     tasksArray: Array<TaskType>
-    changeTaskStatus: (id: string, value: boolean, todoListID: string) => void
+    //changeTaskStatus: (id: string, todoListID: string, value: boolean) => void
     todoLists: Array<TodoListType>
     //setTodoLists: (array: Array<TodoListType>)=> void
-    removeTodoList: (todoListID: string) => void
-    changeTaskTitle: (id: string, todoListID: string, title: string) => void
-    changeTodoListTitle: (title: string, todoListID: string) => void
+    //removeTodoList: (todoListID: string) => void
+    //changeTaskTitle: (id: string, todoListID: string, title: string) => void
+    //changeTodoListTitle: (title: string, todoListID: string) => void
 }
 
 function ToDoList(props: PropsType) { // prinemaet object
@@ -38,25 +38,31 @@ function ToDoList(props: PropsType) { // prinemaet object
     const tasks = useSelector<AppRootStateType, Array<TaskType>>((state) => state.tasks[props.id])
     const dispatch = useDispatch()
 
-    const addTask = (title: string) => {
+    const addTask = useCallback((title: string) => {
         let action = addTaskAC(title, props.id)
         dispatch(action)
-    }
-    const changeFilterAllHandler = (value: filterType, todoListID: string) => {
+    }, []);
+    const changeFilterAllHandler = useCallback((value: filterType, todoListID: string) => {
         const action = ChangeTodolistFilterAC(value,todoListID)
         dispatch(action)
-    }
-    const removeTaskHandler = (mID: string, todoListID: string) => {
-        props.removeTask(mID, todoListID)
-    }
-    const checkBoxHandler = (id: string, e: ChangeEvent<HTMLInputElement>, todoListID:string) => {
-        props.changeTaskStatus(id, e.currentTarget.checked, todoListID);
-    }
-    const changeTodoListTitle = (newTitle: string) => {
-        props.changeTodoListTitle(newTitle, props.id); //vazna posledovateljnostj props vazna
-    }
+    }, []);
+    const removeTaskHandler = useCallback((mID: string, todoListID: string) => {
+        //props.removeTask(mID, todoListID)
+        let action = removeTaskAC(mID, todoListID)
+        dispatch(action)
+    }, []);
+    const checkBoxHandler = useCallback((id: string, todoListID:string, e: ChangeEvent<HTMLInputElement>) => {
+        //props.changeTaskStatus(id, todoListID, e.currentTarget.checked);
+        let action = changeTaskStatusAC(id, todoListID, e.currentTarget.checked)
+        dispatch(action)
+    }, []);
+    const changeTodoListTitle = useCallback((newTitle: string) => {
+        //props.changeTodoListTitle(newTitle, props.id); //vazna posledovateljnostj props vazna
+        let action = ChangeTodolistTitleAC(newTitle,  props.id)
+        dispatch(action)
+    }, []);
 
-    const todoListComponents = todoLists.map(tl => {
+    const todoListComponents = props.todoLists.map(tl => {
         let newTask = tl.filter === "All" ? tasks[tl.id] : //if all return all tasks
             tl.filter === "Active" ? tasks[tl.id].filter((f => !f.isDone)) : //if active return undone
                 tl.filter === "Completed" ? tasks[tl.id].filter((f => f.isDone)) : //if completed return isDona
@@ -70,7 +76,7 @@ function ToDoList(props: PropsType) { // prinemaet object
                 <CancelPresentationRoundedIcon
                     color={"primary"}
                     fontSize={"inherit"}
-                    onClick={() => {props.removeTodoList(props.id)}}>
+                    onClick={() => {removeTodoList(props.id)}}>
                 </CancelPresentationRoundedIcon>
             </h3>
             <AddItemForm addItem={addTask}/>
@@ -122,4 +128,4 @@ function ToDoList(props: PropsType) { // prinemaet object
     )
 }
 
-export default ToDoList;
+export default ToDoList;//

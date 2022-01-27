@@ -101,15 +101,15 @@ function AppWithRedux() {
                       id={tl.id}
                       title={tl.title}
                       filter={tl.filter}
-                      removeTask={removeTask}
-                      addTask={addTask}
+                      //removeTask={removeTask}
+                      //addTask={addTask}
                       tasksArray={newTask}
-                      changeTaskStatus={changeTaskStatus}
+                      //changeTaskStatus={changeTaskStatus}
                       todoLists={todoLists}
                       //setTodoLists={setTodoLists}
-                      removeTodoList={removeTodoList}
-                      changeTaskTitle={changeTaskTitle}
-                      changeTodoListTitle={changeTodoListTitle}
+                      //removeTodoList={removeTodoList}
+                      //changeTaskTitle={changeTaskTitle}
+                      //changeTodoListTitle={changeTodoListTitle}
             />
             </Paper>
         )

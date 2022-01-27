@@ -25,8 +25,8 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/profile/" element={<Profile store={props.store}/>}/>
-                        <Route path="/dialogs/" element={<DialogsContainer store={props.store}/>}/>
+                        <Route path="/profile/" element={<Profile />}/>
+                        <Route path="/dialogs/" element={<DialogsContainer />}/>
                         {/*<Route path="/news/" element={<Dialogs postData={props.postData}/>}/>
                         <Route path="/music/" element={<Dialogs postData={props.postData}/>}/>
                         <Route path="/settings/" element={<Dialogs postData={props.postData}/>}/>*/}

@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {RootStateType} from "./redux/state";
-import {Provider, StoreContext} from './StoreContext';
+import {Provider} from "react-redux";
 
 
 type AppPropsType = {

@@ -6,6 +6,8 @@ import {
 import {ActionsType, PostType} from "../../../redux/state";
 import MyPosts from "./MyPosts";
 import {StoreContext} from "../../../StoreContext";
+import {connect} from "react-redux";
+import Dialogs from "../../Dialogs/Dialogs";
 
 type MyPostsPropsType = {
     store: any
@@ -41,4 +43,22 @@ const MyPostsContainer = (props: MyPostsPropsType) => {
 
 }
 
+const mapStateToProps = (state) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: () => {dispatch(addPostAC(props.newPostText))}
+        updateNewPostText: (text) => {
+            const action = updateNewPostAC(text)
+            dispatch(action)}
+
+    }
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 export default MyPostsContainer;

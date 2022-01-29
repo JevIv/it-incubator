@@ -17,6 +17,7 @@ type MyPostsPropsType = {
     dispatch: (action: ActionsType) => void
 }
 
+/*
 
 const MyPostsContainer = (props: MyPostsPropsType) => {
 
@@ -42,6 +43,7 @@ const MyPostsContainer = (props: MyPostsPropsType) => {
         </StoreContext.Consumer>)
 
 }
+*/
 
 const mapStateToProps = (state) => {
     return {

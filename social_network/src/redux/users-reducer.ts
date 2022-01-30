@@ -8,51 +8,10 @@ export type AddPostActionType =
 
 export type UsersRecuderActionType = AddPostActionType
 
+export const PHOTO_URL = "https://cdn5.vectorstock.com/i/1000x1000/89/79/funny-avatar-cunning-emoji-flat-vector-27638979.jpg"
+
 let initialState = {
-    users: [
-        {
-            id: 1,
-            fullName: "My first post",
-            status: "I am a boss",
-            location: {city: "Minsk", country: "Belarus"},
-            followed: true
-        },
-        {
-            id: 2,
-            fullName: "Olya",
-            status: "Happy",
-            location: {city: "Falesti", country: "Moldova"},
-            followed: false
-        },
-        {
-            id: 3,
-            fullName: "Evgeny",
-            status: "Busy person",
-            location: {city: "Liepaja", country: "Latvia"},
-            followed: true
-        },
-        {
-            id: 4,
-            fullName: "Sam",
-            status: "I am a strong man",
-            location: {city: "Ipswich", country: "United Kingdom"},
-            followed: false
-        },
-        {
-            id: 5,
-            fullName: "Bob",
-            status: "Nothing special",
-            location: {city: "London", country: "United Kingdom"},
-            followed: false
-        },
-        {
-            id: 6,
-            fullName: "Jacob",
-            status: "Alright",
-            location: {city: "Colchester", country: "United Kingdom"},
-            followed: true
-        },
-    ],
+    users: [],
 };
 
 export const usersReducer = (state = initialState < RootStateType >, action: UsersRecuderActionType) => {

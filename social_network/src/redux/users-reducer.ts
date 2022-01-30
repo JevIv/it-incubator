@@ -1,12 +1,23 @@
 import {PostType, RootStateType} from "./state";
 
 
-export type AddPostActionType =
+export type UsersRecuderActionType =
     ReturnType<typeof followAC> |
     ReturnType<typeof unfollowAC> |
     ReturnType<typeof setUsersAC>
 
-export type UsersRecuderActionType = AddPostActionType
+export type UserType = {
+    id: number
+    fullName: string
+    status: string
+    location: UserLocation
+    photoUrl: string
+    followed: boolean
+}
+
+export type InitialStateType = {
+    users: Array<UserType>
+}
 
 export const PHOTO_URL = "https://cdn5.vectorstock.com/i/1000x1000/89/79/funny-avatar-cunning-emoji-flat-vector-27638979.jpg"
 
@@ -14,7 +25,7 @@ let initialState = {
     users: [],
 };
 
-export const usersReducer = (state = initialState < RootStateType >, action: UsersRecuderActionType) => {
+export const usersReducer = (state: InitialStateType = initialState, action: UsersRecuderActionType): InitialStateType => {
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -55,7 +66,7 @@ export const unfollowAC = (userId: number) => {
         userId: userId
     } as const
 }
-export const setUsersAC = (users: any) => {
+export const setUsersAC = (users: Array<UserType>) => {
     return {
         type: "SET_USERS",
         users: users

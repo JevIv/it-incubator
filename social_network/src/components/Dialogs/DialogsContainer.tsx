@@ -11,30 +11,6 @@ type DialogsPropsType = {
     newMessageBody: string
 }
 
-/*const DialogsContainer = (props: DialogsPropsType) => {
-
-    return <StoreContext.Consumer>
-        {
-            (store) => {
-                let state = store.getState().dialogsPage;
-
-                let onSendMessageClick = () => {
-                    store.dispatch(sendMessageAC());
-                }
-
-                let onNewMessageChange = (body) => {
-                    store.dispatch(updateNewMessageBodyAC(body));
-                }
-
-                return (
-                    <Dialogs sendMessage={onSendMessageClick}
-                             dialogsPage={state}
-                             newMessageBody={onNewMessageChange}/>
-                )
-            }}
-    </StoreContext.Consumer>;
-}*/
-
 let mapStateToProps = (state) => {
     return {
         dialogsPage: state.dialogsPage

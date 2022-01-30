@@ -3,11 +3,9 @@ import {
     addPostAC,
     updateNewPostAC
 } from "../../../redux/profile-reducer";
-import {ActionsType, PostType} from "../../../redux/state";
+import {ActionsType} from "../../../redux/state";
 import MyPosts from "./MyPosts";
-import {StoreContext} from "../../../StoreContext";
 import {connect} from "react-redux";
-import Dialogs from "../../Dialogs/Dialogs";
 
 type MyPostsPropsType = {
     store: any

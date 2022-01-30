@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./users.module.css";
-import {PHOTO_URL} from "../../redux/users-reducer";
+import {PHOTO_URL, UserType} from "../../redux/users-reducer";
+import {UsersPropsType} from "./UsersContainer";
 
 
-export const Users = (props) => {
+export const Users = (props: UsersPropsType) => {
     if (props.users.length === 0) {
         props.setUsers([
         {

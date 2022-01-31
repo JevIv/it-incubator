@@ -5,7 +5,7 @@ import {UsersPropsType} from "./UsersContainer";
 
 
 export const Users = (props: UsersPropsType) => {
-    if (props.users.length === 0) {
+    if (props.usersPage.users.length === 0) {
         props.setUsers([
         {
             id: 1,
@@ -62,7 +62,7 @@ export const Users = (props: UsersPropsType) => {
     return (
         <div>
             {
-                props.users.map(u => <div key={u.id}>
+                props.usersPage.users.map(u => <div key={u.id}>
                     <span>
                         <div>
                             <img className={styles.userPhoto} src={u.photoUrl} alt="Profile image"/>

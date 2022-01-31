@@ -3,60 +3,33 @@ import {
     addPostAC,
     updateNewPostAC
 } from "../../../redux/profile-reducer";
-import {ActionsType} from "../../../redux/state";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
+import {Dispatch} from "redux";
 
 type MyPostsPropsType = {
     store: any
-    //addPost: (postMessage: string) => void
     newPostText: string
-    //updateNewPostText: (postMessage: string) => void
-    dispatch: (action: ActionsType) => void
 }
 
-/*
-
-const MyPostsContainer = (props: MyPostsPropsType) => {
-
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-                let state = store.getState();
-                let addPost = () => {
-                    store.dispatch(addPostAC(props.newPostText));
-                }
-
-                let onPostChange = (text) => {
-                    const action = updateNewPostAC(text)
-                    store.dispatch(action);
-                }
-                return (
-                    <MyPosts updateNewPostText={onPostChange}
-                             addPost={addPost}
-                             posts={state.profilePage.posts}
-                             newPostText={state.profilePage.newPostText}/>)
-            }
-            }
-        </StoreContext.Consumer>)
-
+type MapDispatchPropsType = {
+    addPost: (newPostText: string) => void
+    updateNewPostText: (postMessage: string) => void
 }
-*/
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: MyPostsPropsType) => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        addPost: () => {dispatch(addPostAC(props.newPostText))}
-        updateNewPostText: (text) => {
+        addPost: (newPostText: string) => {dispatch(addPostAC(newPostText))},
+        updateNewPostText: (text: string) => {
             const action = updateNewPostAC(text)
             dispatch(action)}
-
     }
 }
 

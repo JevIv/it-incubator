@@ -15,6 +15,11 @@ export type UserType = {
     followed: boolean
 }
 
+type UserLocation = {
+    city: string
+    country: string
+}
+
 export type InitialStateType = {
     users: Array<UserType>
 }

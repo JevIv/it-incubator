@@ -9,14 +9,11 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 
 type AppPropsType= {
-    state: RootStateType
     store: StoreType
     dispatch: (action: ActionsType) => void
-    //addPost: (postMessage: string) => void
-    //updateNewPostText: (postMessage: string) => void
 }
 
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC<AppPropsType> = (props: any) => {
 
     return (
         <BrowserRouter>

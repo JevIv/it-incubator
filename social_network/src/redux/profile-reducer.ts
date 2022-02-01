@@ -1,6 +1,3 @@
-import {PostType, RootStateType} from "./state";
-
-
 export type AddPostActionType = ReturnType<typeof addPostAC>
 
 export type UpdateNewPostActionType = {
@@ -9,7 +6,18 @@ export type UpdateNewPostActionType = {
 }
 export type ProfileRecuderActionType = AddPostActionType | UpdateNewPostActionType
 
-let initialState = {
+export type PostType = {
+    id: number
+    post: string
+    likesCount: number
+}
+
+export type InitialStateType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+
+let initialState: InitialStateType = {
     posts: [
         {id: 1, post: "My first post", likesCount: 12},
         {id: 2, post: "My second post", likesCount: 10},
@@ -21,7 +29,7 @@ let initialState = {
     newPostText: "it-kamasutra",
 };
 
-export const profileReducer = (state = initialState<RootStateType>, action: ProfileRecuderActionType) => {
+export const profileReducer = (state: InitialStateType = initialState, action: ProfileRecuderActionType) => {
     switch (action.type) {
         case "ADD-POST": {
             const newPost: PostType = {

@@ -2,7 +2,7 @@ import {AddPostActionType, profileReducer, UpdateNewPostActionType} from "./prof
 import {dialogsReducer, SendMessageActionType, UpdateNewMessageBodyActionType} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
-export type PostType = {
+type PostType = {
     id: number
     post: string
     likesCount: number
@@ -16,7 +16,7 @@ type MessageType = {
     message: string
 }
 
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }

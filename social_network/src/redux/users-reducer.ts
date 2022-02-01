@@ -1,6 +1,3 @@
-import {PostType, RootStateType} from "./state";
-
-
 export type UsersRecuderActionType =
     ReturnType<typeof followAC> |
     ReturnType<typeof unfollowAC> |

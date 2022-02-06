@@ -1,16 +1,21 @@
 import React from 'react';
-import style from './Skills.module.css';
-import styleContainer from '../common/styles/Container.module.css'
+import style from './Skill.module.css';
 
-export const Skills = () => {
+type SkillPropsType = {
+    title: string
+    icon: string
+    description: string
+}
+
+export const Skill = (props: SkillPropsType) => {
     return (
-        <div className={style.skillsBlock}>
-            <div className={`${styleContainer.container} ${style.skillsContainer}`}>
-                <h2 className={style.title}>Skills</h2>
-                <div className={style.skills}>
+        <div className={style.skill}>
+            <div className={style.icon}></div>
+            <h3>{props.title}</h3>
+            <span className={style.description}>
+                {props.description}
+            </span>
 
-                </div>
-            </div>
         </div>
     );
 };

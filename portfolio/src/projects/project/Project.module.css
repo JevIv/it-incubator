@@ -1,0 +1,25 @@
+.project {
+    width: 350px;
+    background-color: #e7fdd8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.photo {
+    height: 160px;
+    width: 100%;
+    background-color: #84CDCA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.button {
+    height: 40px;
+    width: 150px;
+    margin-top: 17%;
+    border: none;
+    font-size: 16px;
+    background-color: #e7fdd8;
+
+}

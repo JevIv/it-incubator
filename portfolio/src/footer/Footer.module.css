@@ -1,0 +1,12 @@
+.footerBlock {
+    height: 300px;
+    background-color: #C38D9D;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.footerContainer {
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}

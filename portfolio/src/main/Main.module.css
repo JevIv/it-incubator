@@ -1,6 +1,7 @@
 .mainBlock {
 height: 100vh;
-    background-color: #C38D9D;
+    /*background-color: #C38D9D;*/
+    background-color: #123C69;
 }
 .greeting {
     width: 300px;

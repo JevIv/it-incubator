@@ -6,7 +6,7 @@ export const ContactForm = () => {
     return (
         <form className={style.ContactForm}>
             <input type={"text"}
-                   placeholder={"Title of message"}
+                   placeholder={"Name"}
                    className={style.contactInput}/>
             <input type={"email"}
                    placeholder={"Your email"}

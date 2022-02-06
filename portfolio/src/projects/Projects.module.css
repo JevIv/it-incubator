@@ -1,6 +1,7 @@
 .projectsBlock {
     height: 100vh;
-    background-color: #C38D9D;
+    /*background-color: #C38D9D;*/
+    background-color: #EDC7B7;
 }
 .projectsContainer {
     justify-content: flex-start;
@@ -8,12 +9,12 @@
     align-items: center;
 }
 .title {
-    background-color: #61dafb;
+    /*background-color: #61dafb;*/
     position: absolute;
 }
 .projects {
     margin-top: 70px;
-    border: 2px solid gray;
+    /*border: 2px solid gray;*/
     width: 100%;
     display: flex;
     justify-content: space-between;

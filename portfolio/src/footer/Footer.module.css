@@ -6,7 +6,29 @@
     align-items: center;
 }
 .footerContainer {
-    justify-content: flex-start;
+    display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+}
+.footerIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footerIcon {
+    height: 60px;
+    width: 60px;
+    margin: 20px;
+}
+.footerIcon:hover {
+    height: 62px;
+    width: 62px;
+}
+.footerIcon:active {
+    height: 60px;
+    width: 60px;
+}
+p{
+    text-align: center;
 }

@@ -92,7 +92,7 @@ export const tasksReducer = (state:TasksStateType = initialState, action:Actions
             return stateCopy
         }
         default:
-            throw new Error("Error")
+            return state
     }
 }
 

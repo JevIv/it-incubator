@@ -70,6 +70,7 @@ export const tasksReducer = (state:TasksStateType = initialState, action:Actions
             if (task) {
                 task.isDone = action.isDone
             }
+            state[action.todolistId] = [...tasks]
             return stateCopy
         }
         case "CHANGE-TASK-TITLE": {
@@ -79,6 +80,7 @@ export const tasksReducer = (state:TasksStateType = initialState, action:Actions
             if (task) {
                 task.title = action.title
             }
+            state[action.todolistId] = [...tasks]
             return stateCopy
         }
         case "ADD-TODOLIST": {

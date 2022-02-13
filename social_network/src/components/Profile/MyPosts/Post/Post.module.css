@@ -5,6 +5,7 @@
 
 .item .avatar {
     width: 90px;
-    border-radius: 500%;
+    height: auto;
+    border-radius: 50%;
 ;
 }

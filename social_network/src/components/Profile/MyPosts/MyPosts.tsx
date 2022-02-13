@@ -3,15 +3,6 @@ import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import {MyPostsPropsType} from "./MyPostsContainer";
 
-/*type MyPostsPropsType = {
-    posts: Array<PostType>
-    addPost: () => void
-    newPostText: string
-    updateNewPostText: (postMessage: string) => void
-    dispatch: (action: ActionsType) => void
-}*/
-
-
 const MyPosts = (props: MyPostsPropsType) => {
 
     let postsElements = props.profilePage.posts.map(p => <Post id={p.id} post={p.post} likesCount={p.likesCount}/>)

@@ -2,60 +2,16 @@ import React from "react";
 import styles from "./users.module.css";
 import {PHOTO_URL, UserType} from "../../redux/users-reducer";
 import {UsersPropsType} from "./UsersContainer";
+import axios from "axios";
+import userPhoto from "../../assets/images/avatar_img.jpg"
 
 
 export const Users = (props: UsersPropsType) => {
     if (props.usersPage.users.length === 0) {
-        props.setUsers([
-        {
-            id: 1,
-            fullName: "My first post",
-            status: "I am a boss",
-            location: {city: "Minsk", country: "Belarus"},
-            photoUrl: PHOTO_URL,
-            followed: true,
-        },
-        {
-            id: 2,
-            fullName: "Olya",
-            status: "Happy",
-            location: {city: "Falesti", country: "Moldova"},
-            photoUrl: PHOTO_URL,
-            followed: false,
-        },
-        {
-            id: 3,
-            fullName: "Evgeny",
-            status: "Busy person",
-            location: {city: "Liepaja", country: "Latvia"},
-            photoUrl: PHOTO_URL,
-            followed: true,
-        },
-        {
-            id: 4,
-            fullName: "Sam",
-            status: "I am a strong man",
-            location: {city: "Ipswich", country: "United Kingdom"},
-            photoUrl: PHOTO_URL,
-            followed: false,
-        },
-        {
-            id: 5,
-            fullName: "Bob",
-            status: "Nothing special",
-            location: {city: "London", country: "United Kingdom"},
-            photoUrl: PHOTO_URL,
-            followed: false,
-        },
-        {
-            id: 6,
-            fullName: "Jacob",
-            status: "Alright",
-            location: {city: "Colchester", country: "United Kingdom"},
-            photoUrl: PHOTO_URL,
-            followed: true,
-        },
-    ])
+
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items)
+        })
     }
 
 
@@ -65,7 +21,7 @@ export const Users = (props: UsersPropsType) => {
                 props.usersPage.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img className={styles.userPhoto} src={u.photoUrl} alt="Profile image"/>
+                            <img className={styles.userPhoto} src={u.photos.small != null ? u.photos.small : userPhoto} alt="Profile image"/>
                         </div>
                         <div>
                             {u.followed

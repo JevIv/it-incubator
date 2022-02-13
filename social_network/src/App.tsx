@@ -7,13 +7,10 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {ActionsType, RootStateType, StoreType} from "./redux/state";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
+import {AppStateType} from "./redux/redux-store";
 
-type AppPropsType= {
-    store: StoreType
-    dispatch: (action: ActionsType) => void
-}
 
-const App: React.FC<AppPropsType> = (props: any) => {
+const App: React.FC<AppStateType> = () => {
 
     return (
         <BrowserRouter>

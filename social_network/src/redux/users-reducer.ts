@@ -8,8 +8,13 @@ export type UserType = {
     fullName: string
     status: string
     location: UserLocation
-    photoUrl: string
+    photos: PhotoType
     followed: boolean
+}
+
+type PhotoType = {
+    small: string | null
+    large: string | null
 }
 
 type UserLocation = {

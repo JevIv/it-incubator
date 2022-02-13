@@ -1,5 +1,3 @@
-import {RootStateType} from "./state";
-
 export type SendMessageActionType = ReturnType<typeof sendMessageAC>
 export type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageBodyAC>
 export type DialogsRecuderActionType = UpdateNewMessageBodyActionType | SendMessageActionType

@@ -19,13 +19,16 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let onAddPost = () => {
+        console.log("onAddPost triggered")
         let postText = newPostElement.current?.value;
+        console.log("value: " + postText)
         if (postText){
             props.addPost(postText);
         }
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        console.log("onPostChange triggered")
         let text = e.currentTarget.value;
         props.updateNewPostText(text);
     }
@@ -34,7 +37,7 @@ const MyPosts = (props: MyPostsPropsType) => {
         <div>
             <h3>My posts</h3>
             <div>
-                <textarea ///ref={newPostElement}
+                <textarea ref={newPostElement}
                     value={props.profilePage.newPostText}
                     onChange={onPostChange}/>
             </div>

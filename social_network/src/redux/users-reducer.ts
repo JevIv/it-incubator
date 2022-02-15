@@ -3,7 +3,8 @@ export type UsersRecuderActionType =
     ReturnType<typeof unfollowAC> |
     ReturnType<typeof setUsersAC> |
     ReturnType<typeof setCurrentPageAC> |
-    ReturnType<typeof setTotalUsersCountAC>
+    ReturnType<typeof setTotalUsersCountAC> |
+    ReturnType<typeof toggleIsFetchingAC>
 
 export type UserType = {
     id: number
@@ -12,6 +13,7 @@ export type UserType = {
     location: UserLocation
     photos: PhotoType
     followed: boolean
+
 }
 
 type PhotoType = {
@@ -29,6 +31,7 @@ export type InitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export const PHOTO_URL = "https://cdn5.vectorstock.com/i/1000x1000/89/79/funny-avatar-cunning-emoji-flat-vector-27638979.jpg"
@@ -37,7 +40,8 @@ let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 };
 
 export const usersReducer = (state: InitialStateType = initialState, action: UsersRecuderActionType): InitialStateType => {
@@ -68,6 +72,8 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
             return {...state, currentPage: action.curentPage}
         case "SET_TOTAL_USERS_COUNT":
             return {...state, totalUsersCount: action.totalUsersCount}
+        case "TOGGLE_IS_FETCHING":
+            return {...state, isFetching: action.isFetching}
         default:
             return state
 
@@ -102,5 +108,11 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
     return {
         type: "SET_TOTAL_USERS_COUNT",
         totalUsersCount: totalUsersCount
+    } as const
+}
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: "TOGGLE_IS_FETCHING",
+        isFetching
     } as const
 }

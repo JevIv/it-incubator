@@ -1,10 +1,14 @@
+
 export type AddPostActionType = ReturnType<typeof addPostAC>
 
 export type UpdateNewPostActionType = {
     type: "UPDATE-NEW-POST-TEXT"
     postMessage: string
 }
-export type ProfileRecuderActionType = AddPostActionType | UpdateNewPostActionType
+export type ProfileRecuderActionType =
+    AddPostActionType |
+    UpdateNewPostActionType |
+    ReturnType<typeof setUserProfile>
 
 export type PostType = {
     id: number
@@ -15,6 +19,7 @@ export type PostType = {
 export type InitialStateType = {
     posts: Array<PostType>
     newPostText: string
+    profile: null | string
 }
 
 let initialState: InitialStateType = {
@@ -27,6 +32,7 @@ let initialState: InitialStateType = {
         {id: 6, post: "My sixth post", likesCount: 5},
     ],
     newPostText: "it-kamasutra",
+    profile: null
 };
 
 export const profileReducer = (state: InitialStateType = initialState, action: ProfileRecuderActionType) => {
@@ -50,6 +56,12 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
                 newPostText: action.postMessage
             };
         }
+        case "SET_USER_PROFILE": {
+            return {
+                ...state,
+                profile: action.profile
+            };
+        }
         default:
             return state
     }
@@ -67,3 +79,10 @@ export const updateNewPostAC = (text: string) : UpdateNewPostActionType => {
         postMessage: text
     } as const
 }
+export const setUserProfile = (profile: string) : UpdateNewPostActionType => {
+    return {
+        type: "SET_USER_PROFILE",
+        profile
+    } as const
+}
+

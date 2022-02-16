@@ -2,16 +2,8 @@ import React from "react";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-/*type ProfilePropsType = {
-    store: any
-    dispatch: (action: ActionsType) => void
-    profilePage: ProfilePageType
-}*/
 
-const Profile = (
-    //props: ProfilePropsType
-) => {
-
+const Profile = () => {
 
     return (
         <div>

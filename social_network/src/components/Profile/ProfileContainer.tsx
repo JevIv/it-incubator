@@ -1,22 +1,13 @@
 import React from "react";
-import {UsersPropsType} from "../Users/UsersContainer";
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {
-    follow,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
-    toggleIsFetching,
-    unfollow
-} from "../../redux/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
+import {InitialStateType, ProfileType, setUserProfile} from "../../redux/profile-reducer";
 
 
-export class ProfileContainer extends React.Component{
+class ProfileContainer extends React.Component<ProfilePropsType>{
     componentDidMount() {
-        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
             this.props.setUserProfile(response.data)
         })
@@ -25,16 +16,28 @@ export class ProfileContainer extends React.Component{
     render() {
         return (
             <div>
-                <Profile {...this.props}/>
+                <Profile {...this.props} profile={this.props.profilePage.profile}/>
             </div>
         );
     }
 }
 
+
+type MapStatePropsType = {
+    profilePage: InitialStateType
+}
+
+type MapDispatchPropsType = {
+    setUserProfile: (profile: ProfileType) => void
+}
+
 const mapStateToProps = (state: AppStateType) => {
     return {
-        usersPage: state.usersPage
+        profilePage: state.profilePage
     }
 }
+
+export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
+
 
 export default connect(mapStateToProps,{setUserProfile})(ProfileContainer)

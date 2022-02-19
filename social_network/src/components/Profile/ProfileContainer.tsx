@@ -49,7 +49,7 @@ const mapStateToProps = (state: AppStateType) => {
 export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
 
 const ProfileURLMatch = (props: ProfilePropsType) => {
-    const match = useMatch('/profile/:userId/');
+    const match = useMatch<string>('/profile/:userId/');
     return <ProfileContainer {...props} match={match}/>;
 }
 

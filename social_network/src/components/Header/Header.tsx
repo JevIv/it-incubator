@@ -2,9 +2,14 @@ import React from "react";
 import s from"./Header.module.css";
 import {NavLink} from "react-router-dom";
 
+type HeaderPropsType = {
+    //userId: number | null
+    //email: string | null
+    login: string | null
+    isAuth: boolean
+}
 
-
-const Header = (props) => {
+const Header = (props: HeaderPropsType) => {
     return (
         <header className={s.header}>
             <img

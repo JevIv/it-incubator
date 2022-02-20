@@ -23,6 +23,7 @@ export const Users = (props: UsersPropsType) => {
     const pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
     const pages = []
     if (pageCount > 10) {
+        debugger
         if (props.currentPage > 5) {
             for (let i = props.currentPage - 4; i <= props.currentPage + 5; i++) {
                 pages.push(i)

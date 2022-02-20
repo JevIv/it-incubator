@@ -7,6 +7,8 @@ import {userSubscriptionAPI} from "../../api/api";
 
 
 type UsersPropsType = {
+    toggleFollowingProgress: (isFetching: boolean,userId: number) => void
+    followingInprogress: Array<number>
     totalUsersCount: number
     currentPage: number
     pageSize: number
@@ -56,20 +58,24 @@ export const Users = (props: UsersPropsType) => {
                     </div>
                     <div>
                     {u.followed
-                        ? <button onClick={() => {
+                        ? <button disabled={props.followingInprogress.some(id => id === u.id)} onClick={() => {
+                            props.toggleFollowingProgress(true, u.id);
                             userSubscriptionAPI.unFollowUser(u.id)
                                 .then(data => {
                                 if (data.resultCode === 0) {
                                     props.unfollow(u.id)
                                 }
+                                props.toggleFollowingProgress(false, u.id);
                             })
                         }}>Unfollow</button>
-                        : <button onClick={() => {
+                        : <button disabled={props.followingInprogress.some(id => id === u.id)} onClick={() => {
+                            props.toggleFollowingProgress(true, u.id);
                             userSubscriptionAPI.followUser(u.id)
                                 .then(data => {
                                 if (data.resultCode === 0) {
                                     props.follow(u.id)
                                 }
+                                props.toggleFollowingProgress(false, u.id);
                             })
                         }}>Follow</button>
                     }

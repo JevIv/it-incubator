@@ -1,10 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    follow, getUsersThunkCreator,
+    follow, followUserThunkCreator, getUsersThunkCreator,
     InitialStateType, setCurrentPage, setTotalUsersCount,
     setUsers, toggleFollowingProgress, toggleIsFetching,
-    unfollow,
+    unfollow, unFollowUserThunkCreator,
     UserType
 } from "../../redux/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
@@ -26,8 +26,8 @@ class UsersContainer extends React.Component<UsersPropsType> {
         //     })
     }
 
-    onPageChanged = (pageNumber: number) => {
-        this.props.getUsersThunkCreator(pageNumber, this.props.usersPage.pageSize)
+    onPageChanged = (pageNumer: number) => {
+        this.props.getUsersThunkCreator(pageNumer, this.props.usersPage.pageSize)
         // this.props.setCurrentPage(pageNumer)
         // this.props.toggleIsFetching(true)
         // usersAPI.getUsers(pageNumer, this.props.usersPage.pageSize).then(data => {
@@ -49,8 +49,8 @@ class UsersContainer extends React.Component<UsersPropsType> {
                    pageSize={this.props.usersPage.pageSize}
                    users={this.props.usersPage.users}
                    onPageChanged={this.onPageChanged}
-                   unfollow={this.props.unfollow}
-                   follow={this.props.follow}
+                   unFollowUserThunkCreator={this.props.unFollowUserThunkCreator}
+                   followUserThunkCreator={this.props.followUserThunkCreator}
             />
         </>
     }
@@ -61,8 +61,8 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    followUserThunkCreator: (userId: number) => void
+    unFollowUserThunkCreator: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (curentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
@@ -79,6 +79,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }
 export default connect(mapStateToProps,
-    {follow, unfollow, setUsers, setCurrentPage,
+    {followUserThunkCreator, unFollowUserThunkCreator, setUsers, setCurrentPage,
         setTotalUsersCount, toggleIsFetching, toggleFollowingProgress,
         getUsersThunkCreator})(UsersContainer)

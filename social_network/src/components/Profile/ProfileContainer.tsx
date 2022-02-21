@@ -1,11 +1,9 @@
 import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {useMatch} from "react-router-dom"
+import {Navigate, useMatch} from "react-router-dom"
 import {AppStateType} from "../../redux/redux-store";
-import {getUserProfile, InitialStateType, ProfileType, setUserProfile} from "../../redux/profile-reducer";
-import {usersAPI} from "../../api/api";
+import {getUserProfile, InitialStateType} from "../../redux/profile-reducer";
 
 
 type ProfileContainerPropsType = {
@@ -19,13 +17,10 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType>{
             ? this.props.match.params.userId
             : 1
         this.props.getUserProfile(userId)
-        /*usersAPI.getProfile(userId)
-            .then(data => {
-                this.props.setUserProfile(data)
-        })*/
     }
 
     render() {
+        if (!this.props.isAuth) return <Navigate to={"/login"}/>
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profilePage.profile}/>
@@ -36,6 +31,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType>{
 
 type MapStatePropsType = {
     profilePage: InitialStateType
+    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -45,7 +41,8 @@ type MapDispatchPropsType = {
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        profilePage: state.profilePage
+        profilePage: state.profilePage,
+        isAuth: state.auth.isAuth
     }
 }
 

@@ -4,8 +4,8 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {useMatch} from "react-router-dom"
 import {AppStateType} from "../../redux/redux-store";
-import {InitialStateType, ProfileType, setUserProfile} from "../../redux/profile-reducer";
-import {profileAPI} from "../../api/api";
+import {getUserProfile, InitialStateType, ProfileType, setUserProfile} from "../../redux/profile-reducer";
+import {usersAPI} from "../../api/api";
 
 
 type ProfileContainerPropsType = {
@@ -18,10 +18,11 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType>{
         let userId = this.props.match
             ? this.props.match.params.userId
             : 1
-        profileAPI.getUser(userId)
+        this.props.getUserProfile(userId)
+        /*usersAPI.getProfile(userId)
             .then(data => {
                 this.props.setUserProfile(data)
-        })
+        })*/
     }
 
     render() {
@@ -38,7 +39,8 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    setUserProfile: (profile: ProfileType) => void
+    //setUserProfile: (profile: ProfileType) => void
+    getUserProfile: (userId: number) => void
 }
 
 const mapStateToProps = (state: AppStateType) => {
@@ -54,4 +56,4 @@ const ProfileURLMatch = (props: ProfilePropsType) => {
     return <ProfileContainer {...props} match={match}/>;
 }
 
-export default connect(mapStateToProps,{setUserProfile})(ProfileURLMatch)
+export default connect(mapStateToProps,{getUserProfile})(ProfileURLMatch)

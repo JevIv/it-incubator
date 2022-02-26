@@ -1,17 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {todolistsAPI} from "../../api/todolists-api";
-import axios from "axios";
 
 
 export default {
     title: "API"
-}
-
-const settings = {
-    withCredentials: true,
-    headers: {
-        "API-KEY": "0cef6ec5-ea0b-4679-beff-cc75700e3c68"
-    }
 }
 
 export const GetTodolists = () => {
@@ -72,6 +64,45 @@ export const UpdateTodolistsTitle = () => {
     return (
         <div>
             {JSON.stringify(state)}
+        </div>
+    );
+};
+
+export const GetTasks = () => {
+    const [state, setState] = useState<any>(null)
+    useEffect(() => {
+        const todolistId = ""
+        todolistsAPI.getTasks(todolistId)
+            .then((response)=>{
+                setState(response.data)
+            })
+    }, [])
+    return (
+        <div>
+            {JSON.stringify(state)}
+        </div>
+    );
+};
+
+export const DeleteTasks = () => {
+    const [state, setState] = useState<any>(null)
+    const [taskId, setTaskId] = useState<string>("")
+    const [todolistId, setTodolistId] = useState<string>("")
+
+    const deleteTask = () => {
+        todolistsAPI.deleteTasks(todolistId, taskId)
+            .then((response)=>{
+                setState(response.data)
+            })
+    }
+    return (
+        <div>
+            {JSON.stringify(state)}
+            <div>
+                <input placeholder={"TodolistId"} value={todolistId} onChange={(e)=> {setTodolistId(e.currentTarget.value)}}/>
+                <input placeholder={"TaskId"} value={taskId} onChange={(e)=> {setTaskId(e.currentTarget.value)}}/>
+                <button onClick={deleteTask}>Delete task</button>
+            </div>
         </div>
     );
 };

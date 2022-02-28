@@ -33,6 +33,7 @@ export const setValueFromLocalAC = (value: number) => {
     return {type: "SET-VALUE-FROM-LOCAL", value} as const
 }
 //Thunk
+/*
 export const incValuesTC = () => (dispatch: Dispatch, getState: ()=> AppStateType) => {
     let currentValue = getState().counter.value
     localStorage.setItem("counterValue", JSON.stringify(currentValue + 1))
@@ -44,4 +45,4 @@ export const setValueFromLsTC = () => (dispatch: Dispatch) => {
         let newValue = JSON.parse(valueAsString)
         dispatch(setValueFromLocalAC(newValue))
     }
-}
+}*/

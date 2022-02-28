@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./state/store";
-import {incValueAC, incValuesTC, setValueFromLsTC} from "./state/counter-recuder";
+import {incValueAC} from "./state/counter-recuder";
+//import {incValueAC, incValuesTC, setValueFromLsTC} from "./state/counter-recuder";
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(setValueFromLsTC())
+        dispatch(incValueAC())
     }, [value])
 
     const incHandler = () => {

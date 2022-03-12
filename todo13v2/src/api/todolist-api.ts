@@ -1,4 +1,5 @@
 import axios from "axios";
+import {UpdateDomainTaskModelType} from "../state/tasks-reducer";
 
 
 const settings = {
@@ -91,7 +92,7 @@ export const todolistsAPI = {
     deleteTasks(payload: {todolistId: string, taskId: string}){
         return instance.delete<ResponseType>(`todo-lists/${payload.todolistId}/tasks/${payload.taskId}`)
     },
-    updateTask(todolistId:string, taskId:string, model: UpdateTaskModelType){
+    updateTask(todolistId:string, taskId:string, model: UpdateDomainTaskModelType){
         return instance.put<ResponseType>(`todo-lists/${todolistId}/tasks/${taskId}`, model)
     }
 

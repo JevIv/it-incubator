@@ -6,8 +6,11 @@ type InitialStateType = {
 export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed"
 
 type ActionsType =
-    | ReturnType<typeof setErrorAC>
-    | ReturnType<typeof setStatusAC>
+    | SetErrorActionType
+    | SetStatusActionType
+
+export type SetErrorActionType = ReturnType<typeof setErrorAC>
+export type SetStatusActionType = ReturnType<typeof setStatusAC>
 
 const initialState: InitialStateType = {
     status: "idle",

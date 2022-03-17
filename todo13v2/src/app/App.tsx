@@ -32,8 +32,11 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
+type PropsType = {
+    demo?: boolean
+}
 
-function App() {
+function App({demo= false}: PropsType) {
 
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
@@ -109,17 +112,16 @@ function App() {
                             return <Grid item key={tl.id}>
                                 <Paper style={{padding: '10px'}}>
                                     <Todolist
-                                        id={tl.id}
-                                        title={tl.title}
+                                        todolist={tl}
                                         tasks={allTodolistTasks}
                                         removeTask={removeTask}
                                         changeFilter={changeFilter}
                                         addTask={addTask}
                                         changeTaskStatus={changeStatus}
-                                        filter={tl.filter}
                                         removeTodolist={removeTodolist}
                                         changeTaskTitle={changeTaskTitle}
                                         changeTodolistTitle={changeTodolistTitle}
+                                        demo={demo}
                                     />
                                 </Paper>
                             </Grid>

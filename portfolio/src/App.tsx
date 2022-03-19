@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./header/Header";
-import {Main} from "./main/Main";
-import {Skills} from "./skills/Skills";
-import {Projects} from "./projects/Projects";
-import {Contacts} from "./contacts/Contacts";
-import {Footer} from "./footer/Footer";
+import {Header} from "./components/header/Header";
+import {Main} from "./components/main/Main";
+import {Skills} from "./components/skills/Skills";
+import {Projects} from "./components/projects/Projects";
+import {Contacts} from "./components/contacts/Contacts";
+import {Footer} from "./components/footer/Footer";
 
 function App() {
   return (

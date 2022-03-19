@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Footer.module.css';
-import styleContainer from "../common/styles/Container.module.css";
+import styleContainer from "../../common/styles/Container.module.css";
 
 const contactIcons = [{
     "linkedIn": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/2048px-LinkedIn_icon_circle.svg.png",

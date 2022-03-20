@@ -1,12 +1,16 @@
+@import "../../../common/styles/sass/variables";
+@import "../../../common/styles/sass/mixins";
+
+
 .ContactForm {
     width: 60%;
-    margin: 20px;
-    /*background-color: #84CDCA;*/
+    //margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
+
 }
 .contactText {
     width:90%;
@@ -16,6 +20,8 @@
     min-height:190px;
     background-color: #EEE2DC;
     border: 1px solid #BAB2B5;
+    @include text($textFontFamily, 12px, 1.8, $textColor);
+    font-weight: 400;
 }
 .contactInput {
     padding: 5px;
@@ -24,6 +30,8 @@
     height: 30px;
     background-color: #EEE2DC;
     border: 1px solid #BAB2B5;
+    @include text($textFontFamily, 12px, 1.8, $textColor);
+    font-weight: 400;
 }
 @media only screen and (min-device-width: 355px)
 and (max-device-width: 1024px){

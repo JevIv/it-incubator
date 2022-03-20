@@ -1,0 +1,79 @@
+@import "../../common/styles/sass/variables";
+
+.mainBlock {
+height: 100vh;
+    /*background-color: #C38D9D;*/
+    background-color: $bgColor;
+}
+.mainContainer{
+    background-image: url("/assets/images/london_edded.jpg");
+    background-color: #cccccc;
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.left {
+    width: 50%;
+    height: 100%;
+    background-color: $bgSecondColor;
+    position: absolute;
+    font-family: $textFontFamily;
+    color: #fff;
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+    text-align: right;
+    font-size: 3em;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    p {
+        text-align: right;
+        font-size: 2em;
+        font-weight: bold;
+    }
+}
+.right {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    font-family: $textFontFamily;
+    text-align: left;
+    font-size: 3em;
+    top: 50%;
+    left: 76%;
+    transform: translate(-50%, -50%);
+    p {
+        text-align: left;
+        font-size: 2em;
+        font-weight: bold;
+    }
+}
+.greeting{
+
+}
+
+/*.greeting {
+    width: 50%;
+    height: 100%;
+    background-color: $bgSecondColor;
+    position: absolute;
+    font-family: $textFontFamily;
+    color: #fff;
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+    text-align: center;
+    font-size: 3em;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}*/
+/*
+.avatar {
+    width: 300px;
+    height: 400px;
+    background-color: #40B3A2;
+}
+*/

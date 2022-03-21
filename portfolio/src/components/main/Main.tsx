@@ -1,11 +1,13 @@
 import React from 'react';
 import style from './Main.module.scss';
 import styleContainer from '../../common/styles/Container.module.scss'
+import {Header} from "../header/Header";
 
 export const Main = () => {
     return (
         <div className={style.mainBlock}>
-            <div className={`${styleContainer.container} ${style.mainContainer}`}>
+            <div className={`${style.mainContainer}`}>
+                <Header/>
                 <div className={style.greetingContainer}>
                     {/*<div className={style.greeting}>*/}
                     {/*    <span>Hi There,</span>*/}

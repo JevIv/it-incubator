@@ -6,9 +6,10 @@ height: 100vh;
     background-color: $bgColor;
 }
 .mainContainer{
-    background-image: url("/assets/images/london_edded.jpg");
+    background-image: url("/assets/images/London(3).jpg");
     background-color: #cccccc;
     min-height: 100vh;
+    min-width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -21,17 +22,26 @@ height: 100vh;
     background-color: $bgSecondColor;
     position: absolute;
     font-family: $textFontFamily;
+    text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000;
     color: #fff;
     mix-blend-mode: multiply;
     opacity: 0.8;
     text-align: right;
-    font-size: 3em;
+    font-size: 4vw;
+    //font-size: 50px;
+    line-height: 40%;
     top: 50%;
     left: 25%;
     transform: translate(-50%, -50%);
+    h1{
+        position:relative;
+        top: 25%;
+    }
     p {
+        position:relative;
+        top: 25%;
         text-align: right;
-        font-size: 2em;
+        font-size: 4vm;
         font-weight: bold;
     }
 }
@@ -40,19 +50,29 @@ height: 100vh;
     height: 100%;
     position: absolute;
     font-family: $textFontFamily;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    color: #2C262A;
     text-align: left;
-    font-size: 3em;
+    font-size: 4vw;
+    line-height: 40%;
     top: 50%;
-    left: 76%;
+    left: 75.5%;
     transform: translate(-50%, -50%);
+    h1{
+        position:relative;
+        top: 25%;
+    }
     p {
+        position:relative;
+        top: 25%;
         text-align: left;
-        font-size: 2em;
+        font-size: 4vm;
         font-weight: bold;
     }
 }
 .greeting{
-
+    position:relative;
+    top: 25%;
 }
 
 /*.greeting {

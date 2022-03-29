@@ -1,99 +1,58 @@
 @import "../../common/styles/sass/variables";
 
 .mainBlock {
-height: 100vh;
-    /*background-color: #C38D9D;*/
-    background-color: $bgColor;
+  min-height: 100vh;
+  background-color: $bgColor;
+  /*background-color: #C38D9D;*/
+  //background-color: $bgColor;
 }
-.mainContainer{
-    background-image: url("/assets/images/London(3).jpg");
-    background-color: #cccccc;
-    min-height: 100vh;
-    min-width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
+
+//.mainContainer {
+//  background-color: $bgColor;
+//  min-height: 100vh;
+//  min-width: 100%;
+//  //background-position: center;
+//  //background-repeat: no-repeat;
+//  //background-size: cover;
+//  position: relative;
+//}
 
 .left {
-    width: 50%;
-    height: 100%;
-    background-color: $bgSecondColor;
-    position: absolute;
-    font-family: $textFontFamily;
-    text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000;
-    color: #fff;
-    mix-blend-mode: multiply;
-    opacity: 0.8;
+  width: 50%;
+  height: 100%;
+  background-color: $bgSecondColor;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+
+  .titleText {
+    position: relative;
+    font-family: $titleFontFamily;
+    color: $bgColor;
     text-align: right;
-    font-size: 4vw;
-    //font-size: 50px;
-    line-height: 40%;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    h1{
-        position:relative;
-        top: 25%;
-    }
-    p {
-        position:relative;
-        top: 25%;
-        text-align: right;
-        font-size: 4vm;
-        font-weight: bold;
-    }
-}
-.right {
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    font-family: $textFontFamily;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    color: #2C262A;
-    text-align: left;
-    font-size: 4vw;
-    line-height: 40%;
-    top: 50%;
-    left: 75.5%;
-    transform: translate(-50%, -50%);
-    h1{
-        position:relative;
-        top: 25%;
-    }
-    p {
-        position:relative;
-        top: 25%;
-        text-align: left;
-        font-size: 4vm;
-        font-weight: bold;
-    }
-}
-.greeting{
-    position:relative;
-    top: 25%;
+    font-size: 5vw;
+    font-weight: 800;
+    top: 10%;
+  }
 }
 
-/*.greeting {
-    width: 50%;
-    height: 100%;
-    background-color: $bgSecondColor;
-    position: absolute;
-    font-family: $textFontFamily;
-    color: #fff;
-    mix-blend-mode: multiply;
-    opacity: 0.8;
-    text-align: center;
-    font-size: 3em;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-}*/
-/*
-.avatar {
-    width: 300px;
-    height: 400px;
-    background-color: #40B3A2;
+.right {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  background-color: $bgColor;
+  transform: translate(-50%, -50%);
+
+  .titleText {
+    position: relative;
+    font-family: $titleFontFamily;
+    color: $textColor;
+    text-align: left;
+    font-size: 5vw;
+    font-weight: 800;
+    top: 10%;
+  }
 }
-*/

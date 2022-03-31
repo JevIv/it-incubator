@@ -3,8 +3,8 @@
 .mainBlock {
   min-height: 100vh;
   background-color: $bgColor;
-  /*background-color: #C38D9D;*/
-  //background-color: $bgColor;
+  //  /*background-color: #C38D9D;*/
+  //  //background-color: $bgColor;
 }
 
 //.mainContainer {
@@ -25,6 +25,7 @@
   top: 50%;
   left: 25%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 
   .titleText {
     position: relative;
@@ -36,6 +37,7 @@
     top: 10%;
   }
 }
+
 
 .right {
   width: 50%;
@@ -56,3 +58,16 @@
     top: 10%;
   }
 }
+
+
+.greetingAvatar {
+  width: 25vw;
+  transform: rotate(28deg);
+  display: block;
+  position: sticky;
+  margin-top: 42vh;
+  margin-left: 39%;
+  z-index: 0;
+}
+
+

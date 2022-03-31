@@ -1,11 +1,8 @@
 import React from 'react';
 import style from './Main.module.scss';
-import hello_ava from "../../assets/images/todolist.svg";
+import greetingImg from "../../assets/images/hello_ava2.png";
 
 export const Main = () => {
-    const greetingAvatar = {
-        backgroundImage: `url(${hello_ava})`,
-    };
     return (
         <div className={style.mainBlock}>
             <div className={`${style.mainContainer}`}>
@@ -27,7 +24,11 @@ export const Main = () => {
                         </div>
                     </h1>
                 </div>
-                <div className={style.image} style={greetingAvatar}></div>
+                <img
+                    className={style.greetingAvatar}
+                    src={greetingImg}
+                    alt="Hi, I'm Evgeny Ivanov, Front-end Developer"
+                />
             </div>
 
         </div>

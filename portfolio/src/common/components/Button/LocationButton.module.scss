@@ -1,0 +1,29 @@
+@import "../../styles/sass/variables";
+@import "../../styles/sass/variables";
+
+
+.button {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 30px;
+  background-color: #A8DADC;
+  border-color: $textColor;
+  opacity: 0.6;
+
+  :active {
+    opacity: 0.2;
+  }
+
+  .arrow {
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    transform: rotate(45deg);
+    border-right: 2px solid $textColor;
+    border-bottom: 2px solid $textColor;
+  }
+}

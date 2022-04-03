@@ -5,16 +5,20 @@
   /*background-color: #61dafb;*/
   position: relative;
   //margin: 0 0 30px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 30px;
-  font-weight: 300;
+  font-family: $titleFontFamily;
+  font-size: 32px;
+  font-weight: 1200;
   color: $titleColor;
   text-transform: capitalize;
   line-height: 1.2;
-  letter-spacing: 3px;
+  //letter-spacing: 3px;
+  letter-spacing: -2px;
 
   .title h2 {
     margin: 0;
+  }
+  h2 {
+    font-weight: 800;
   }
 
   &::before {

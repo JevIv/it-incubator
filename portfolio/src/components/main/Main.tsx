@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Main.module.scss';
 import greetingImg from "../../assets/images/hello_ava2.png";
+import {LocationButton} from "../../common/components/Button/LocationButton";
 
 export const Main = () => {
     return (
@@ -29,6 +30,7 @@ export const Main = () => {
                     src={greetingImg}
                     alt="Hi, I'm Evgeny Ivanov, Front-end Developer"
                 />
+                <LocationButton/>
             </div>
 
         </div>

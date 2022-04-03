@@ -7,19 +7,18 @@
   //  //background-color: $bgColor;
 }
 
-//.mainContainer {
-//  background-color: $bgColor;
-//  min-height: 100vh;
-//  min-width: 100%;
-//  //background-position: center;
-//  //background-repeat: no-repeat;
-//  //background-size: cover;
-//  position: relative;
-//}
+.mainContainer {
+  background-color: $bgColor;
+  //min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+
+}
 
 .left {
   width: 50%;
   height: 100%;
+  //height: 100vh;
   background-color: $bgSecondColor;
   position: absolute;
   top: 50%;
@@ -47,6 +46,7 @@
   left: 75%;
   background-color: $bgColor;
   transform: translate(-50%, -50%);
+  z-index: 0;
 
   .titleText {
     position: relative;
@@ -61,12 +61,13 @@
 
 
 .greetingAvatar {
-  width: 25vw;
+  width: 10vw;
+  //width: 10%;
   transform: rotate(28deg);
   display: block;
   position: sticky;
-  margin-top: 42vh;
-  margin-left: 39%;
+  margin-top: 54vh;
+  margin-left: 48%;
   z-index: 0;
 }
 

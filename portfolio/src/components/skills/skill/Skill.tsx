@@ -16,6 +16,7 @@ export const Skill = (props: SkillIconType) => {
                     src={props.img}
                     alt={props.desc}
                 />
+                <div className={style.iconName}>{props.desc}</div>
             </div>
         </div>
     );

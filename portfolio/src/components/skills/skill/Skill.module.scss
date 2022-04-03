@@ -12,14 +12,34 @@
     text-align: center;
     color: $textColor;
     .icon {
-        margin: 10px;
-        height: 200px;
-        width: 200px;
+        margin: 15px;
+        height: 12vh;
+        width: 12vh;
         :hover {
             transform: scale(1.1);
             transition: transform .2s;
         }
 
+        .iconName {
+            display: none;
+            position: relative;
+            margin: 0 auto;
+            bottom: 50%;
+            height: 30px;
+            width: 100%;
+            /*border: 3px solid $textColor;
+            background-color: #A8DADC;
+            opacity: 0.6;*/
+            font-size: 20px;
+            font-family: $textFontFamily;
+            color: $textColor;
+            text-align: center;
+
+        }
+        :hover + .iconName, .iconName:hover {
+            display: inline-block;
+
+        }
     }
     .skillTitle {
         @include text($titleFontFamily, 16px, 1.2, $titleColor);

@@ -1,0 +1,9 @@
+@import "../../styles/sass/variables";
+
+.separator{
+  background-color: $textColor;
+  margin-left: -17px;
+  height: 58vh;
+  width: 7px;
+  content: "";
+}

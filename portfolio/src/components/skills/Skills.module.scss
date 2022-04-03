@@ -11,6 +11,11 @@
         .content{
             display: flex;
             justify-content: flex-start;
+            .skillsAvatar{
+                //width: 50vh;
+                height: 60vh;
+                z-index: 1;
+            }
         }
         .skills {
             width: 100%;

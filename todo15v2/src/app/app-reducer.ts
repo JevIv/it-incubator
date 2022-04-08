@@ -1,4 +1,6 @@
 import {Dispatch} from "redux";
+import {authAPI} from "../api/todolists-api";
+import {setIsLoggedInAC} from "../features/Login/auth-reducer";
 
 type InitialStateType = {
     status: RequestStatusType
@@ -40,5 +42,12 @@ export const setAppStatusAC = (status: RequestStatusType) => ({ type:"APP/SET-ST
 export const setAppInitializedAC = (value: boolean) => ({ type:"APP/SET-IS-INITIALIZED", value } as const)
 
 export const initializeAppTC = () => (dispatch: Dispatch) => {
+    authAPI.me().then(res => {
+        if (res.data.resultCode === 0) {
+            dispatch(setIsLoggedInAC(true))
+        } else {
 
+        }
+        dispatch(setAppInitializedAC(true))
+    })
 }

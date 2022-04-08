@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback, useEffect} from 'react'
 import './App.css'
 import {TodolistsList} from '../features/TodolistsList/TodolistsList'
 import AppBar from '@mui/material/AppBar';
@@ -9,22 +9,36 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import {Menu} from '@mui/icons-material';
 import {CircularProgress, LinearProgress} from "@mui/material";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./store";
 import {RequestStatusType} from "../../../todo13v2/src/app/app-reducer";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import {Login} from "../features/Login/Login";
+import {initializeAppTC} from "./app-reducer";
+import {logoutTC} from "../features/Login/auth-reducer";
 
 
 function App() {
+    const dispatch = useDispatch()
     const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
     const initialized = useSelector<AppRootStateType, boolean>(state => state.app.isInitialized)
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+
+    useEffect(() => {
+        dispatch(initializeAppTC())
+    }, [])
+
+    const logoutHandler = useCallback(() => {
+        dispatch(logoutTC)
+    }, [])
 
     if(!initialized) {
         return <div style={{ position: "fixed", top: "30%", textAlign: "center", width: "100%"}}>
             <CircularProgress />
         </div>
     }
+
+
 
 
     return (
@@ -39,7 +53,8 @@ function App() {
                         <Typography variant="h6">
                             News
                         </Typography>
-                        <Button color="inherit">Login</Button>
+                        {/*<Button color="inherit">Log in</Button>*/}
+                        {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Log out</Button>}
                     </Toolbar>
                 </AppBar>
                 <Container fixed>

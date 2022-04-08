@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 
 export const Login = () => {
 
-    const dispath = useDispatch()
+    const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
 
     if(isLoggedIn) {
@@ -35,7 +35,7 @@ export const Login = () => {
             rememberMe: false
         },
         onSubmit: values => {
-            dispath(loginTC(values));
+            dispatch(loginTC(values));
         },
     })
 

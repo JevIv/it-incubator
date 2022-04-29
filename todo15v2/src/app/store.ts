@@ -12,7 +12,8 @@ const rootReducer = combineReducers({
     tasks: tasksReducer,
     todolists: todolistsReducer,
     app: appReducer,
-    auth: authReducer
+    auth: authReducer,
+    //search: searchReducer,
 })
 // непосредственно создаём store
 //export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
